@@ -1,0 +1,80 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{% block title %}Sample website{% endblock %}</title>
+    <meta name="description" content="Sample website" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/master.css' %} media="screen,projection" />
+
+    {% block javascript %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+    <div id="wrapper-home">
+    <div id="upper">
+    <div id="header">
+
+    </div>	<!-- left is close -->
+
+    <div class="u_ri">
+    <center><font size="6" color="black">{% block header %}Sample Webpage{% endblock %}</font></center>
+    <div class="page_header"><p><img src="{{STATIC_URL}}poolapp/img/balls.jpg" alt"Pool Balls" ></p></div>
+
+
+    </div>	<!-- right side is close -->
+    </div>	<!-- header  is close -->
+        </div><!--  upper is close-->
+        
+
+    <div style="clear:both"></div>
+    <div id="middle">
+
+    <div id="mainbody"  class="pageWide" style="background:#ffff;">
+    <br />
+
+    {% block menubar %}
+    <!--menu with links to other pages -->
+    <center>
+    <table width="740px" style="vertical-align:top;text-align:center;" border="0" >
+      <tr>
+        <td><a href="/">Home</a></td>
+        <td><a href="/tournaments/find/">Find Tournaments</a></td>
+        <td><a href="/tournaments/post/">Post Tournaments</a></td>
+      </tr>
+    </tr>
+    </table>
+    </center>
+    <br /><br />
+    {% endblock %}
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+
+    <br /><br /><br />
+
+    </div>	<!-- down is close -->
+    </div>	<!-- header is close -->
+    
+    <div id="footer_new">
+
+    <p style="font-size: 10px;color:#000000;text-align:center;">
+        Contact <a href="mailto:sanpietro.steve@gmail.com?Subject=Pool%20Website" target="_top">
+        sanpietro.steve@gmail.com</a> for questions.
+    </p>
+
+     <div id="copyright"><p style="color:#add8e6;text-align:center">&copy; 2015 Standyco, Inc. All Rights Reserved. </p>   </div>
+
+    </div>	<!-- wrapper is close -->
+
+</body>
+</html>
