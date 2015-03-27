@@ -11,6 +11,9 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'poolapp.apps.home.views.index'),
+    url(r'^tournaments/post/', 'poolapp.apps.post.views.index'),
+    url(r'^tournaments/find/', 'poolapp.apps.find.views.index'),
+    url(r'^forums/', 'poolapp.apps.forums.views.index'),
 )
 
 if settings.DEBUG:

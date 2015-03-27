@@ -42,6 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'poolapp.apps.home',
+    'poolapp.apps.post',
+    'poolapp.apps.find',
+    'poolapp.apps.forums',
 )
 
 MIDDLEWARE_CLASSES = (

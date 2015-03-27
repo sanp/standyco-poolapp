@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>{% block title %}Sample website{% endblock %}</title>
-    <meta name="description" content="Sample website" />
+    <title>{% block title %}Pool Site{% endblock %}</title>
+    <meta name="description" content="Pool Site" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="language" content="English" />
 
@@ -25,7 +25,7 @@
     </div>	<!-- left is close -->
 
     <div class="u_ri">
-    <center><font size="6" color="black">{% block header %}Sample Webpage{% endblock %}</font></center>
+    <center><font size="6" color="black">{% block header %}Pool Site{% endblock %}</font></center>
     <div class="page_header"><p><img src="{{STATIC_URL}}poolapp/img/balls.jpg" alt"Pool Balls" ></p></div>
 
 
@@ -43,11 +43,12 @@
     {% block menubar %}
     <!--menu with links to other pages -->
     <center>
-    <table width="740px" style="vertical-align:top;text-align:center;" border="0" >
+    <table width="600px" style="vertical-align:top;text-align:center;" border="2" >
       <tr>
         <td><a href="/">Home</a></td>
-        <td><a href="/tournaments/find/">Find Tournaments</a></td>
-        <td><a href="/tournaments/post/">Post Tournaments</a></td>
+        <td><a href="/tournaments/find/">Find a Tournament</a></td>
+        <td><a href="/tournaments/post/">Post a Tournament</a></td>
+        <td><a href="/forums/">Forums</a></td>
       </tr>
     </tr>
     </table>
@@ -72,7 +73,7 @@
         sanpietro.steve@gmail.com</a> for questions.
     </p>
 
-     <div id="copyright"><p style="color:#add8e6;text-align:center">&copy; 2015 Standyco, Inc. All Rights Reserved. </p>   </div>
+     <div id="copyright"><p style="color:#b0c4de;text-align:center">&copy; 2015 Standyco, Inc. All Rights Reserved. </p>   </div>
 
     </div>	<!-- wrapper is close -->
 
