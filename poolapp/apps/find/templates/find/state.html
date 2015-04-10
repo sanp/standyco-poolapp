@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{# HTMLDjango does indexing with a dot, not brackets #}
+{# week_list.0.week returns the week attribute from the first member of week_list #}
+{% block title %} {{ state_id }} {% endblock %}
+{% block header %} Week {{ state_id }} {% endblock %}
+
+{% block content %}
+{% if tourney_list %}
+    <ul>
+    {% for tourney in tourney_list %}
+    {{ tourney.title }}<br><br>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No movies this week :(.</p>
+{% endif %}
+{% endblock %}

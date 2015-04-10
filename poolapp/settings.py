@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'localflavor',
     'poolapp.apps.home',
     'poolapp.apps.post',
     'poolapp.apps.find',

@@ -5,8 +5,22 @@
 {% block content %}
 <br><br>
 <center><h1>Find a Tournament!</h1></center>
-<center><p>You find a tournament on this page.</p></center>
+
+<b>Select your state</b><br>
+
+{% if state_list %}
+    <ul>
+    {% for state in state_list %}
+        <!-- No slash before state otherwise the link will break -->
+        <li><a href="state/{{ state }}/">{{ state }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tournaments are available.</p>
+{% endif %}
+<br><br>
+
 <br><br>
 <!-- {% load staticfiles %} -->
-<center><img src="{{STATIC_URL}}poolapp/img/bracket.jpg" alt="Tournament Bracket"></center>
+<!-- <center><img src="{{STATIC_URL}}poolapp/img/bracket.jpg" alt="Tournament Bracket"></center> -->
 {% endblock %}

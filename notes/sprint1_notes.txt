@@ -1,0 +1,39 @@
+Todos:
+
+Steve:
+
+    - Post page
+        - set up everything like in the ppt
+        - generate some sample posts and have them appear on the website
+        - add option for people to upload files
+            o pics, flyers
+
+    - Find page
+        - Display simple list output of tournaments in the db
+        - State > city > (maybe) sub-city region > tournament listing
+            o filter/sort by:
+                - tourny date
+                - purse size
+                - entry fees
+                - game
+
+    - User account stuff
+        - signup page
+            o name, email, payment info
+            o kaptcha?
+        - incorporate with payment system
+            o paypal? swipe? venmo?
+        
+    - Come up with a name for the site
+
+    - Set up infastructure for different environments
+        - development, staging, production
+        - set up a fabfile???
+
+Randy:
+    
+    - Start creating a style guide for the website
+        - what fonts/colors/etc do we want to use for different sections?
+    - Maybe write some copy?
+    - Maybe some more sophisticated wireframing
+    - Thinking about logos/images/etc

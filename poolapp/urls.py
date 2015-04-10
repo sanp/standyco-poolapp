@@ -5,15 +5,11 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'poolapp.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'poolapp.apps.home.views.index'),
-    url(r'^tournaments/post/', 'poolapp.apps.post.views.index'),
-    url(r'^tournaments/find/', 'poolapp.apps.find.views.index'),
-    url(r'^forums/', 'poolapp.apps.forums.views.index'),
+    url(r'^$', 'poolapp.apps.home.views.index', name='home'),
+    url(r'^tournaments/post/', include('poolapp.apps.post.urls')),
+    url(r'^tournaments/find/', include('poolapp.apps.find.urls')),
+    url(r'^forums/', include('poolapp.apps.forums.urls')),
 )
 
 if settings.DEBUG:
