@@ -9,10 +9,11 @@
 {% if tourney_list %}
     <ul>
     {% for tourney in tourney_list %}
-    {{ tourney.title }}<br><br>
+        <!-- No slash before state otherwise the link will break -->
+        <li><a href="{{ tourney.tourney_id }}/">{{ tourney.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No movies this week :(.</p>
+    <p>No tournaments are available.</p>
 {% endif %}
 {% endblock %}

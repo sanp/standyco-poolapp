@@ -51,6 +51,7 @@ class Tourney(models.Model):
     )
 
   # Fields
+  tourney_id = models.AutoField(primary_key=True)
   state = USStateField(choices=STATE_CHOICES, default='IL')
   # TODO: add cities
   # TODO: add sub-city regions

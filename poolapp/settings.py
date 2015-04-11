@@ -41,7 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'localflavor',
+    'django.contrib.humanize', # For number formatting
+    'localflavor', # For local formatting: phone numbers, us states, etc
+    # Site apps
     'poolapp.apps.home',
     'poolapp.apps.post',
     'poolapp.apps.find',
