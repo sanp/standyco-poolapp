@@ -4,6 +4,14 @@ from django.core.validators import RegexValidator
 from localflavor.us.us_states import STATE_CHOICES
 from localflavor.us.models import USStateField
 
+class Name(models.Model):
+
+  your_name = models.CharField(max_length=70)
+
+  def __str__(self):              # __unicode__ on Python 2
+    return self.your_name
+
+
 class Tourney(models.Model):
 
   # Choices
