@@ -7,6 +7,7 @@ from localflavor.us.models import USStateField
 class Name(models.Model):
 
   your_name = models.CharField(max_length=70)
+  your_address = models.CharField(max_length=100)
 
   def __str__(self):              # __unicode__ on Python 2
     return self.your_name

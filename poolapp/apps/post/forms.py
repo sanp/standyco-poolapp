@@ -1,9 +1,5 @@
 from django import forms
 
-from .models import Name
-
-class NameForm(forms.ModelForm):
-
-  class Meta:
-    model = Name
-    fields = ('name',)
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=70)
+    your_address = forms.CharField(label='Your Address', max_length=100)
