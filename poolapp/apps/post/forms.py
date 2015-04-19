@@ -7,3 +7,7 @@ class TourneyForm(ModelForm):
 
   class Meta:
     model = Tourney
+    widgets = {
+            'adtnl_info': forms.Textarea,
+            'date': forms.TextInput(attrs={'class':'datepicker'}),
+        }
