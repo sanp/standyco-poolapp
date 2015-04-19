@@ -30,10 +30,10 @@
             <tr><td>Added Money: ${{ tourney.added_money|intcomma }} 
                     (based on a full field).</td></tr>
 
-            <tr><td>Start time: ${{ tourney.start_time }}</td></tr>
+            <tr><td>Start time: {{ tourney.start_time }}</td></tr>
 
             {% if tourney.end_time %}
-                <tr><td>End time: ${{ tourney.end_time }}</td></tr>
+                <tr><td>End time: {{ tourney.end_time }}</td></tr>
             {% endif %}
 
             <tr><td>
