@@ -4,10 +4,13 @@
 
 {% block content %}
 
-<form action="{% url 'tourney_form_upload' %}" method="post">                                                             
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Submit' />
-</form>
+<center>
+    <h1>Enter in tournament details</h1>
+    <form action="{% url 'tourney_form_upload' %}" method="post">                                                             
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Submit' />
+    </form>
+</center>
 
 {% endblock %}
