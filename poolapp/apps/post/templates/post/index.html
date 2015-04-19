@@ -4,12 +4,8 @@
 
 {% block content %}
 
-<form action="/your-name/" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
-</form>
+    <center><a href="name/upload.html">Post a new name!</a><br /></center>
+
+    <center><a href="names">Look at all the names!</a><br /></center>
 
 {% endblock %}

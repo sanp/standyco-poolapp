@@ -6,6 +6,7 @@ from localflavor.us.models import USStateField
 
 class Name(models.Model):
 
+  name_id = models.AutoField(primary_key=True)
   your_name = models.CharField(max_length=70)
   your_address = models.CharField(max_length=100)
 

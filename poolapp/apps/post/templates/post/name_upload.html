@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Post a Tournament {% endblock %}
+
+{% block content %}
+
+<form action="{% url 'name_upload' %}" method="post">                                                             
+  {% csrf_token %}
+  <center>
+      <label for="content"></label>
+      Your Name: <input type="text" name="name" id="name" /><br />
+      Your Address: <input type="text" name="address" id="address" /><br />
+      <input type="submit" />
+  </center>
+</form>
+
+{% endblock %}
