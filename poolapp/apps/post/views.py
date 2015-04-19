@@ -3,10 +3,6 @@ from django.template import RequestContext
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from django.core.validators import RegexValidator
-from localflavor.us.us_states import STATE_CHOICES
-from localflavor.us.models import USStateField
-
 from poolapp.apps.post.models import Name, Tourney
 from poolapp.apps.post.forms import NameForm, TourneyForm
 
