@@ -10,4 +10,8 @@ class TourneyForm(ModelForm):
     widgets = {
             'adtnl_info': forms.Textarea,
             'date': forms.TextInput(attrs={'class':'datepicker'}),
+            'start_time': forms.TextInput(attrs={'class':'timepicker', 
+                'autocomplete':'off'}),
+            'end_time': forms.TextInput(attrs={'class':'timepicker', 
+                'autocomplete':'off'}),
         }
