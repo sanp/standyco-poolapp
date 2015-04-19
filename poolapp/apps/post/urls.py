@@ -7,9 +7,16 @@ urlpatterns = patterns('',
   url(r'^names$', views.detail, name='detail'),
 
   # Posting content
-#   url(r'^name/(?P<name_id>\d+)/name_detail.html$', views.name_detail, 
-#     name='name_detail'),
-  # Link the view views.post_upload to URL post/upload.html
+  # Name
+  # Manually - not using the forms.py approach
   url(r'^name/upload.html$', views.name_upload, name='name_upload'),
+  # Using the forms.py approach
+  url(r'^name/name_form_upload.html$',
+        views.name_form_upload, name='name_form_upload'),
+
+  # Tourney
+  # Using the forms.py approach
+  url(r'^name/name_form_upload.html$',
+        views.name_form_upload, name='name_form_upload'),
 
 )

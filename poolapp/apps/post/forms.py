@@ -1,5 +1,10 @@
-from django import forms
+from django.forms import ModelForm
+from poolapp.apps.post.models import *
 
-class NameForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=70)
-    your_address = forms.CharField(label='Your Address', max_length=100)
+class NameForm(ModelForm):
+  class Meta:
+    model = Name
+
+class TourneyForm(ModelForm):
+  class Meta:
+    model = Tourney
