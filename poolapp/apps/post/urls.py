@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
   # Tourney
   # Using the forms.py approach
-  url(r'^name/name_form_upload.html$',
-        views.name_form_upload, name='name_form_upload'),
+  url(r'^tourney_form_upload.html$',
+        views.tourney_form_upload, name='tourney_form_upload'),
 
 )
