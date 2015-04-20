@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %} Post a Tournament {% endblock %}
 
@@ -6,42 +7,32 @@
 
 <!-- Datepicker JQuery -->
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- JQuery timepicker library -->
+<!-- cf: http://xdsoft.net/jqplugins/datetimepicker/  -->
+<!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.css' %}"/ >
+<script src="{% static 'poolapp/js/datetimepicker-master/jquery.js' %}"></script>
+<script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script>
 
-<link rel="stylesheet" type="text/css" href="http://wvega.github.io/timepicker/resources/jquery-timepicker/jquery.timepicker.min.css">
-<script type='text/javascript' src="http://wvega.github.io/timepicker/resources/jquery-timepicker/jquery.timepicker.min.js"></script>
+<script type='text/javascript'>
 
-<script>
-
-    $(function() {
-        $( ".datepicker" ).datepicker();
-    });
-
-</script>
-
-<script type='text/javascript'>//<![CDATA[ 
-
-$(document).ready(function(){
-    $('.timepicker').timepicker({
-        timeFormat: 'HH:mm:ss',
-        // year, month, day and seconds are not important
-        minTime: new Date(0, 0, 0, 8, 0, 0),
-        maxTime: new Date(0, 0, 0, 23, 59, 0),
-        // time entries start being generated at 6AM but the plugin 
-        // shows only those within the [minTime, maxTime] interval
-        startHour: 6,
-        // the value of the first item in the dropdown, when the input
-        // field is empty. This overrides the startHour and startMinute 
-        // options
-        startTime: new Date(0, 0, 0, 8, 20, 0),
-        // items in the dropdown are separated by at interval minutes
-        interval: 10
+jQuery(function(){
+    jQuery('.datepicker').datetimepicker({
+      format:'m/d/Y',
+      timepicker:false,
     });
 });
 
-//]]>  
+</script>
+
+<script type='text/javascript'>
+
+jQuery(function(){
+    jQuery('.timepicker').datetimepicker({
+      datepicker:false,
+      formatTime:'h:i a'
+    });
+});
 
 </script>
 
