@@ -3,14 +3,28 @@
 
 {% block title %} Post a Tournament {% endblock title %}
 
-{% block javascript %}
+{% block content %}
+
+<center>
+    <h1>Enter in tournament details</h1>
+    <form action="{% url 'tourney_form_upload' %}" method="post">                                                             
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Submit' />
+    </form>
+</center>
+
+{% endblock content %}
+
+{% block bottomjs %}
 
 <!-- Datepicker JQuery -->
 <!-- JQuery timepicker library -->
 <!-- cf: http://xdsoft.net/jqplugins/datetimepicker/  -->
 <!-- this should go after your </body> -->
 <link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.css' %}"/ >
-<script src="{% static 'poolapp/js/datetimepicker-master/jquery.js' %}"></script>
+<script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js'></script>
+<!-- <script src="{% static 'poolapp/js/datetimepicker-master/jquery-1.10.2.js' %}"></script> -->
 <script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script>
 <script type='text/javascript'>
     jQuery(function(){
@@ -31,8 +45,8 @@
 
 <!-- Phone number formatting -->
 <!-- Cf: http://digitalbush.com/projects/masked-input-plugin/ -->
-<!-- <script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script> -->
-<script src="{% static 'poolapp/js/jquery-1.5.2.js' %}"></script>
+<script type='text/javascript' src='//code.jquery.com/jquery-1.5.2.js'></script>
+<!-- <script src="{% static 'poolapp/js/jquery-1.5.2.js' %}"></script> -->
 <script src="{% static 'poolapp/js/jquery.maskedinput-1.2.2.js' %}"></script>
 <script type='text/javascript'>
     // Use noconflict mode to allow use of multiple versions of jQuery with no
@@ -46,17 +60,4 @@
 </script>
 
 
-{% endblock javascript %}
-
-{% block content %}
-
-<center>
-    <h1>Enter in tournament details</h1>
-    <form action="{% url 'tourney_form_upload' %}" method="post">                                                             
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type='submit' value='Submit' />
-    </form>
-</center>
-
-{% endblock content %}
+{% endblock bottomjs %}
