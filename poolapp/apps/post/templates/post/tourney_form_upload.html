@@ -1,43 +1,51 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %} Post a Tournament {% endblock %}
+{% block title %} Post a Tournament {% endblock title %}
 
 {% block javascript %}
 
 <!-- Datepicker JQuery -->
-
 <!-- JQuery timepicker library -->
 <!-- cf: http://xdsoft.net/jqplugins/datetimepicker/  -->
 <!-- this should go after your </body> -->
 <link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.css' %}"/ >
-<script src="{% static 'poolapp/js/datetimepicker-master/jquery.js' %}"></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.js'></script>
 <script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script>
-
 <script type='text/javascript'>
-
-jQuery(function(){
-    jQuery('.datepicker').datetimepicker({
-      format:'m/d/Y',
-      timepicker:false,
+    jQuery(function(){
+    
+        jQuery('.datepicker').datetimepicker({
+          format:'m/d/Y',
+          timepicker:false,
+        });
+    
+        jQuery('.timepicker').datetimepicker({
+          datepicker:false,
+          format:'H:i',
+          formatTime:'h:i a'
+        });
+    
     });
-});
-
 </script>
 
+<!-- Phone number formatting -->
+<!-- Cf: http://digitalbush.com/projects/masked-input-plugin/ -->
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script>
+<script src="{% static 'poolapp/js/jquery.maskedinput-1.2.2.js' %}"></script>
 <script type='text/javascript'>
-
-jQuery(function(){
-    jQuery('.timepicker').datetimepicker({
-      datepicker:false,
-      format:'H:i',
-      formatTime:'h:i a'
+    // Use noconflict mode to allow use of multiple versions of jQuery with no
+    // conflict -- Need different versions for the datepicker lib vs the phone mask
+    // lib -- NOTE: Make sure that the older version of jQuery is loaded before
+    // the newer version.
+    var jQuery_1_5_2 = $.noConflict(true);
+    jQuery(function($){
+        jQuery_1_5_2('.phone').mask('(999) 999-9999'); 
     });
-});
-
 </script>
 
-{% endblock %}
+
+{% endblock javascript %}
 
 {% block content %}
 
@@ -50,4 +58,4 @@ jQuery(function(){
     </form>
 </center>
 
-{% endblock %}
+{% endblock content %}

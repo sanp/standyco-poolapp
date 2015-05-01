@@ -14,4 +14,5 @@ class TourneyForm(ModelForm):
                 'autocomplete':'off'}),
             'end_time': forms.TextInput(attrs={'class':'timepicker', 
                 'autocomplete':'off'}),
+            'contact_phone': forms.TextInput(attrs={'class':'phone'}),
         }
