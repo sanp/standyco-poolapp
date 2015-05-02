@@ -7,4 +7,5 @@ from django import forms
 
 urlpatterns = patterns('',
   url(r'^$', TourneyFormPreview(TourneyForm)),
+  url(r'^submit$', views.tourney_form_upload, name='preview_submit_page'),
 )

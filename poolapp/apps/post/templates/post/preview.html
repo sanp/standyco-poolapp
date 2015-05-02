@@ -13,7 +13,11 @@
 {% endfor %}
 </table>
 
-<form action="{% url 'tourney_form_upload' %}" method="post">
+<!-- The url should point to whatever is entered as the name in the URLconf file -->
+<!-- When the form is submitted, POST the result to the URL named -->
+<!-- 'preview_submit_page - which will call the tourney_form_upload function in -->
+<!-- views.py -->
+<form action="{% url 'preview_submit_page' %}" method="post">
 {% csrf_token %}
 {% for field in form %}{{ field.as_hidden }}
 {% endfor %}
