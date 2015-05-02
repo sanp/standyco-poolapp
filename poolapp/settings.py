@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize', # For number formatting
+    'django.contrib.formtools', # For generating form-preview pages
     'localflavor', # For local formatting: phone numbers, us states, etc
     # Site apps
     'poolapp.apps.home',
