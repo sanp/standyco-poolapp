@@ -7,6 +7,7 @@ from poolapp.apps.post.forms import TourneyForm
 class TourneyFormPreview(FormPreview):
 
   form_template = 'post/tourney_form_upload.html'
+  preview_template = 'post/preview.html'
 
   def done(self, request, cleaned_data):
     # Do something with the cleaned_data, then redirect

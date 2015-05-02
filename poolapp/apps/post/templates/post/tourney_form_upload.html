@@ -5,11 +5,18 @@
 
 {% block content %}
 
+{% if form.errors %}<h1>Please correct the following errors</h1>
+{% else %}
 <center>
     <h1>Enter in tournament details</h1>
-    <form action="{% url 'tourney_form_upload' %}" method="post">                                                             
+</center>
+{% endif %}
+
+<center>
+    <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <input type="hidden" name="{{ stage_field }}" value="1" />
         <input type='submit' value='Preview your post' />
     </form>
 </center>
@@ -45,19 +52,19 @@
 
 <!-- Phone number formatting -->
 <!-- Cf: http://digitalbush.com/projects/masked-input-plugin/ -->
-<script type='text/javascript' src='//code.jquery.com/jquery-1.5.2.js'></script>
-<!-- <script src="{% static 'poolapp/js/jquery-1.5.2.js' %}"></script> -->
-<script src="{% static 'poolapp/js/jquery.maskedinput-1.2.2.js' %}"></script>
-<script type='text/javascript'>
-    // Use noconflict mode to allow use of multiple versions of jQuery with no
-    // conflict -- Need different versions for the datepicker lib vs the phone mask
-    // lib -- NOTE: Make sure that the older version of jQuery is loaded before
-    // the newer version.
-    var jQuery_1_5_2 = $.noConflict(true);
-    jQuery(function($){
-        jQuery_1_5_2('.phone').mask('(999) 999-9999'); 
-    });
-</script>
+
+<!-- <script type='text/javascript' src='//code.jquery.com/jquery-1.5.2.js'></script> -->
+<!-- <script src="{% static 'poolapp/js/jquery.maskedinput-1.2.2.js' %}"></script> -->
+<!-- <script type='text/javascript'> -->
+<!--     // Use noconflict mode to allow use of multiple versions of jQuery with no -->
+<!--     // conflict -- Need different versions for the datepicker lib vs the phone mask -->
+<!--     // lib -- NOTE: Make sure that the older version of jQuery is loaded before -->
+<!--     // the newer version. -->
+<!--     var jQuery_1_5_2 = $.noConflict(true); -->
+<!--     jQuery(function($){ -->
+<!--         jQuery_1_5_2('.phone').mask('(999) 999-9999');  -->
+<!--     }); -->
+<!-- </script> -->
 
 
 {% endblock bottomjs %}
