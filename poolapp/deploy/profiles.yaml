@@ -1,0 +1,25 @@
+defaults: &defaults
+
+  secret_key: ))losdpsvzsc!ph)4d69#7tgy8n+jstm*mn%+lq_#ork6kr%xm
+  debug: False
+
+  postgres:
+    db_name: poolapp_django
+    user: poolapp
+    password: standyco
+    host: localhost
+    port: 5432
+
+development:
+  <<: *defaults
+  
+  debug: True
+    
+
+staging:
+  <<: *defaults
+
+  debug: True
+
+production:
+  <<: *defaults

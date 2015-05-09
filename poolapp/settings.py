@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+import yaml
+
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
 
@@ -15,16 +17,22 @@ TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# Yaml settings
+ENV_NAME = 'production'
+f = open('%s/poolapp/deploy/profiles.yaml' % (BASE_DIR))
+settings = yaml.safe_load(f)
+ENV_SETTINGS = settings[ENV_NAME]
+f.close()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '))losdpsvzsc!ph)4d69#7tgy8n+jstm*mn%+lq_#ork6kr%xm'
+SECRET_KEY = ENV_SETTINGS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = ENV_SETTINGS['debug']
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
@@ -76,14 +84,20 @@ WSGI_APPLICATION = 'poolapp.wsgi.application'
 #     }
 # }
 
+postgres_settings = ENV_SETTINGS['postgres']
+pg_db_name = postgres_settings['db_name']
+pg_user = postgres_settings['user']
+pg_password = postgres_settings['password']
+pg_host = postgres_settings['host']
+pg_port = postgres_settings['port']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'poolapp_django',
-        'USER': 'poolapp',
-        'PASSWORD': 'standyco', # Move this into separete yaml file
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': pg_db_name,
+        'USER': pg_user,
+        'PASSWORD': pg_password, # Move this into separete yaml file
+        'HOST': pg_host,
+        'PORT': pg_port,
     }
 }
 
