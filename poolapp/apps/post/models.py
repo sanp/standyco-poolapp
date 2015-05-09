@@ -56,14 +56,14 @@ class Tourney(models.Model):
   # TODO: add cities
   # TODO: add sub-city regions
   pool_hall = models.CharField(max_length=200)
-  game = models.IntegerField(max_length=1, choices=GAME_CHOICES, default=EIGHT_BALL)
-  field_size = models.IntegerField(max_length=1, choices=FIELD_SIZE_CHOICES,
+  game = models.IntegerField(choices=GAME_CHOICES, default=EIGHT_BALL)
+  field_size = models.IntegerField(choices=FIELD_SIZE_CHOICES,
       default=THIR_P)
   date = models.DateField('Tournament Date')
   fee = models.DecimalField(max_digits=6, decimal_places=2)
   added_money = models.DecimalField(max_digits=6, decimal_places=2)
-  tourney_format = models.IntegerField(max_length=1,
-      choices=TOURNEY_FORMAT_CHOICES, default=SINGLE)
+  tourney_format = models.IntegerField(choices=TOURNEY_FORMAT_CHOICES, 
+      default=SINGLE)
   contact_name = models.CharField(max_length=200)
 
   phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', 
