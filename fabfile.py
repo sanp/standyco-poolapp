@@ -6,6 +6,7 @@
 import os
 import errno
 import yaml
+from subprocess import call
 from fabric.api import *
 from fabric.colors import green, red, yellow
 # Style guide: use green for user input, yellow for printing messages to the
@@ -98,9 +99,9 @@ def set_env_config_vars(environment_name):
     environment_name, bold=True))
   local('export SECRET_KEY=%s' % secret_key)
   if environment_name == 'development':
-    local('export AWS_STORAGE_BUCKET_NAME=%s' % aws_storage_bucket_name)
-    local('export AWS_ACCESS_KEY_ID=%s' % aws_access_key_id)
-    local('export AWS_SECRET_ACCESS_KEY=%s' % aws_secret_access_key)
+    os.environ['AWS_STORAGE_BUCKET_NAME'] = aws_storage_bucket_name
+    os.environ['AWS_ACCESS_KEY_ID'] = aws_access_key_id
+    os.environ['AWS_SECRET_ACCESS_KEY'] = aws_secret_access_key
   else:
     local('heroku config:set AWS_STORAGE_BUCKET_NAME=%s' % aws_storage_bucket_name)
     local('heroku config:set AWS_ACCESS_KEY_ID=%s' % aws_access_key_id)
