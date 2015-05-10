@@ -8,17 +8,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-import yaml
-
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
-TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# Get environment - load this yaml file first!
+import yaml
+f = open('%s/poolapp/deploy/environment.yaml' % (BASE_DIR))
+environment_yaml = yaml.safe_load(f)
+f.close()
+ENV_NAME = environment_yaml['environment']
+
 # General yaml settings
-ENV_NAME = 'production'
 f = open('%s/poolapp/deploy/profiles.yaml' % (BASE_DIR))
 settings = yaml.safe_load(f)
 ENV_SETTINGS = settings[ENV_NAME]
@@ -28,6 +29,9 @@ f.close()
 f = open('%s/poolapp/deploy/secret.yaml' % (BASE_DIR))
 SECRET_SETTINGS = yaml.safe_load(f)
 f.close()
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/

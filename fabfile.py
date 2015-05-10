@@ -3,7 +3,9 @@
 
 # fab deploy:development,8080 (target-environment,port)
 
-from fabric.api import local
+import os
+import errno
+from fabric.api import *
 from fabric.colors import green, red, yellow
 # Style guide: use green for user input, yellow for printing messages to the
 # console, and red for errors/exceptions
@@ -12,6 +14,8 @@ def deploy(environment_name='development', port='8080'):
   if environment_name not in ('production', 'development', 'staging'):
     raise ValueError(
         'Environment must be either production, development, or staging')
+
+  set_env(environment_name)
 
   local('pip freeze > requirements/common.txt')
   if environment_name == 'production':
@@ -30,3 +34,32 @@ def deploy_remote():
   local('heroku maintenance:on')
   local('git push heroku master')
   local('heroku maintenance:off')
+
+def set_env(environment_name):
+  env_yaml_file = 'poolapp/deploy/environment.yaml'
+  env_setting = 'environment: %s' % (environment_name)
+  write_file(env_setting, env_yaml_file)
+
+def write_file(data, path):
+  """ Writes some object (data) to a file safely - first makes sure the path
+  exists
+  """
+
+  def mkdir_p(path):
+    # Taken from http://stackoverflow.com/a/600612/119527
+    try:
+      os.makedirs(path)
+    except OSError as exc: # Python >2.5
+      if exc.errno == errno.EEXIST and os.path.isdir(path):
+        pass
+      else: raise
+
+  def safe_open_w(path):
+    """ Open "path" for writing, creating any parent directories as needed.
+    """
+    mkdir_p(os.path.dirname(path))
+    return open(path, 'wb')
+
+  with safe_open_w(path) as f:
+    f.write(data)
+    f.close()
