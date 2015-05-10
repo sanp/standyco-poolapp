@@ -17,19 +17,23 @@ TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Yaml settings
+# General yaml settings
 ENV_NAME = 'production'
 f = open('%s/poolapp/deploy/profiles.yaml' % (BASE_DIR))
 settings = yaml.safe_load(f)
 ENV_SETTINGS = settings[ENV_NAME]
 f.close()
 
+# Secret yamlsettings
+f = open('%s/poolapp/deploy/secret.yaml' % (BASE_DIR))
+SECRET_SETTINGS = yaml.safe_load(f)
+f.close()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ENV_SETTINGS['secret_key']
+SECRET_KEY = SECRET_SETTINGS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV_SETTINGS['debug']
