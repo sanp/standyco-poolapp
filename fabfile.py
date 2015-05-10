@@ -16,7 +16,7 @@ def deploy(environment_name='development', port='8080'):
         'Environment must be either production, development, or staging')
 
   set_env(environment_name)
-  commit_repo()
+  commit_environment_yaml()
 
   local('pip freeze > requirements/common.txt')
   if environment_name == 'production':
