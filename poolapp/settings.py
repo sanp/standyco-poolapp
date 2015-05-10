@@ -92,22 +92,12 @@ WSGI_APPLICATION = 'poolapp.wsgi.application'
 #     }
 # }
 
-postgres_settings = ENV_SETTINGS['postgres']
-pg_db_name = postgres_settings['db_name']
-pg_user = postgres_settings['user']
-pg_password = postgres_settings['password']
-pg_host = postgres_settings['host']
-pg_port = postgres_settings['port']
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': pg_db_name,
-        'USER': pg_user,
-        'PASSWORD': pg_password, # Move this into separete yaml file
-        'HOST': pg_host,
-        'PORT': pg_port,
-    }
-}
+# Parse database configuration from $DATABASE_URL - for use with Heroku
+# postgres DB
+import dj_database_url
+DATABASES = ENV_SETTINGS['databases']
+if ENV_NAME == 'production':
+  DATABASES = { 'default' : dj_database_url.config()}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

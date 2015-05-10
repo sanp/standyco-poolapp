@@ -1,24 +1,27 @@
 defaults: &defaults
 
-  debug: False
+  debug: True
 
-  postgres:
-    db_name: poolapp_django
-    user: poolapp
-    password: standyco
-    host: localhost
-    port: 5432
+  databases:
+    default:
+      ENGINE: django.db.backends.postgresql_psycopg2
+      NAME: poolapp_django
+      USER: poolapp
+      PASSWORD: standyco # Move this into separete yaml file
+      HOST: localhost
+      PORT: 5432
 
 development:
   <<: *defaults
   
-  debug: True
-    
-
 staging:
   <<: *defaults
 
-  debug: True
-
 production:
   <<: *defaults
+
+  debug: False
+
+  databases:
+    default:
+      ENGINE: django.db.backends.postgresql_psycopg2
