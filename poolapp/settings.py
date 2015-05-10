@@ -94,10 +94,11 @@ WSGI_APPLICATION = 'poolapp.wsgi.application'
 
 # Parse database configuration from $DATABASE_URL - for use with Heroku
 # postgres DB
+# TODO: Why isn't the dj_database_url config thing working.  WTF.
 import dj_database_url
 DATABASES = ENV_SETTINGS['databases']
-if ENV_NAME == 'production':
-  DATABASES = { 'default' : dj_database_url.config()}
+# if ENV_NAME == 'production':
+#   DATABASES = { 'default' : dj_database_url.config()}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
