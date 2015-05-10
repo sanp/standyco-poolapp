@@ -5,6 +5,7 @@
 
 import os
 import errno
+import yaml
 from fabric.api import *
 from fabric.colors import green, red, yellow
 # Style guide: use green for user input, yellow for printing messages to the
@@ -17,6 +18,7 @@ def deploy(environment_name='development', port='8080'):
 
   set_env(environment_name)
   commit_environment_yaml()
+  set_env_config_vars(environment_name)
 
   local('pip freeze > requirements/common.txt')
   if environment_name == 'production':
@@ -77,3 +79,29 @@ def write_file(data, path):
   with safe_open_w(path) as f:
     f.write(data)
     f.close()
+
+def set_env_config_vars(environment_name):
+  """ Set the secret config settings
+  
+  Keep all secret config setting variables in a separate secret.yaml file. Then,
+  depending on the environment, save these settings as environment variables or
+  heroku config variables. Remember: NEVER track the secret.yaml file in a VCS.
+  """
+  f = open('poolapp/deploy/secret.yaml')
+  secret_settings = yaml.safe_load(f)
+  f.close()
+  secret_key = secret_settings['secret_key']
+  aws_storage_bucket_name = secret_settings['aws_storage_bucket_name']
+  aws_access_key_id = secret_settings['aws_access_key_id']
+  aws_secret_access_key = secret_settings['aws_secret_access_key']
+  print(yellow('Setting environment config settings for %s environment...' %
+    environment_name, bold=True))
+  local('export SECRET_KEY=%s' % secret_key)
+  if environment_name == 'development':
+    local('export AWS_STORAGE_BUCKET_NAME=%s' % aws_storage_bucket_name)
+    local('export AWS_ACCESS_KEY_ID=%s' % aws_access_key_id)
+    local('export AWS_SECRET_ACCESS_KEY=%s' % aws_secret_access_key)
+  else:
+    local('heroku config:set AWS_STORAGE_BUCKET_NAME=%s' % aws_storage_bucket_name)
+    local('heroku config:set AWS_ACCESS_KEY_ID=%s' % aws_access_key_id)
+    local('heroku config:set AWS_SECRET_ACCESS_KEY=%s' % aws_secret_access_key)
