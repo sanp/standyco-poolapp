@@ -60,6 +60,9 @@ INSTALLED_APPS = (
     'django.contrib.humanize', # For number formatting
     'django.contrib.formtools', # For generating form-preview pages
     'localflavor', # For local formatting: phone numbers, us states, etc
+    # storages and boto for hosting static files in amazing s3
+    'storages',
+    'boto',
     # Site apps
     'poolapp.apps.home',
     'poolapp.apps.post',
@@ -85,13 +88,6 @@ WSGI_APPLICATION = 'poolapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 # Parse database configuration from $DATABASE_URL - for use with Heroku
 # postgres DB
 # TODO: Why isn't the dj_database_url config thing working.  WTF.
@@ -104,15 +100,10 @@ DATABASES = ENV_SETTINGS['databases']
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'America/Chicago'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -121,9 +112,14 @@ STATIC_URL = '/static/'
 # Static asset configuration
 import os
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+# Place (outside of django project) where static files are collected -- should
+# be different from staticfiles_dirs! I.e. where the static files are *output*
 STATIC_ROOT = 'staticfiles'
+# URL where static files can be found in browser. E.g.
+# www.mywebsite.com/static/css/master.css, or something.
 STATIC_URL = '/static/'
 
+# Where in the application static files are *input*
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
 )
@@ -131,3 +127,13 @@ STATICFILES_DIRS = (
 # Heroku settings
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+#Storage on S3 settings are stored as os.environs to keep settings.py clean
+USE_AMW_FOR_STATICFILES = ENV_SETTINGS['use_amw_for_staticfiles']
+if USE_AMW_FOR_STATICFILES:
+  AWS_STORAGE_BUCKET_NAME = SECRET_SETTINGS['aws_storage_bucket_name']
+  AWS_ACCESS_KEY_ID = SECRET_SETTINGS['aws_access_key_id']
+  AWS_SECRET_ACCESS_KEY = SECRET_SETTINGS['aws_secret_access_key']
+  STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+  S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+  STATIC_URL = S3_URL
