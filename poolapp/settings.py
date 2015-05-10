@@ -126,9 +126,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #Storage on S3 settings are stored as os.environs to keep settings.py clean
 USE_AMW_FOR_STATICFILES = ENV_SETTINGS['use_amw_for_staticfiles']
 if USE_AMW_FOR_STATICFILES:
-  AWS_STORAGE_BUCKET_NAME = os.environ['aws_storage_bucket_name']
-  AWS_ACCESS_KEY_ID = os.environ['aws_access_key_id']
-  AWS_SECRET_ACCESS_KEY = os.environ['aws_secret_access_key']
+  AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+  AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+  AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
   STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
   S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
   STATIC_URL = S3_URL
