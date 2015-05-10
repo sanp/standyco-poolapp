@@ -20,7 +20,7 @@ staging:
 production:
   <<: *defaults
 
-  debug: False
+  debug: True
 
   databases:
     default:
