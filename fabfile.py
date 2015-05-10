@@ -52,7 +52,7 @@ def commit_environment_yaml():
   """
   print(yellow('Committing changes to environment.yaml file...', bold=True))
   local('git add poolapp/deploy/environment.yaml')
-  local('git commit -am "Deploying app. Updated environment.yaml"')
+  local('git commit -m "Deploying app. Updated environment.yaml"')
 
 def write_file(data, path):
   """ Writes some object (data) to a file safely - first makes sure the path
