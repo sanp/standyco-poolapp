@@ -54,11 +54,10 @@ def commit_environment_yaml(environment_name):
   """
   print(yellow('Committing changes to environment.yaml file...', bold=True))
   local('git add poolapp/deploy/environment.yaml')
-  try:
-    local('git commit -m "Deploying app to %s. Updated environment.yaml"' %
-        environment_name)
-  except:
-    print(green('Nothing new to commit.', bold=True))
+  # Use allow empty to force a commit even with no changes. This is useful for
+  # always having a record of when deploys happen in the git log.
+  local('git commit --allow-empty -m "Deploying app to %s. Updated environment.yaml"' %
+      environment_name)
 
 def write_file(data, path):
   """ Writes some object (data) to a file safely - first makes sure the path
