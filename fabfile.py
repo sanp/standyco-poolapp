@@ -18,7 +18,7 @@ def deploy(environment_name='development', port='8080'):
         'Environment must be either production, development, or staging')
 
   set_env(environment_name)
-  commit_environment_yaml()
+  commit_environment_yaml(environment_name)
 
   local('pip freeze > requirements/common.txt')
   if environment_name == 'production':
@@ -43,7 +43,7 @@ def set_env(environment_name):
   env_setting = 'environment: %s' % (environment_name)
   write_file(env_setting, env_yaml_file)
 
-def commit_environment_yaml():
+def commit_environment_yaml(environment_name):
   """ Only commit the changes to environment.yaml
   
   I don't like adding and committing the entire repo's changes in a fabfile,
@@ -55,7 +55,8 @@ def commit_environment_yaml():
   print(yellow('Committing changes to environment.yaml file...', bold=True))
   local('git add poolapp/deploy/environment.yaml')
   try:
-    local('git commit -m "Deploying app. Updated environment.yaml"')
+    local('git commit -m "Deploying app to %s. Updated environment.yaml"' %
+        environment_name)
   except:
     print(green('Nothing new to commit.', bold=True))
 
