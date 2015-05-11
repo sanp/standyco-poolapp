@@ -1,0 +1,18 @@
+To get started, first set all relevant environment config variables for
+local/development and heroku/production environments. For local, add the
+following code to the postactivate file in your virtual environment (if using
+virtualenvwrapper, which you should be). If using plain virtualenv, add this
+code to the end of that env's activate script:
+
+    export SECRET_KEY='YOUR-SECRET-KEY'
+    export AWS_STORAGE_BUCKET_NAME='YOUR-BUCKET_NAME'
+    export AWS_ACCESS_KEY_ID='YOUR-AWS-ACCESS-KEY'
+    export AWS_SECRET_ACCESS_KEY='YOUR-AWS-SECRET-KEY'
+
+And for heroku, set the following config variables in your app (or you can set
+these config variables directly in the heroku app's settings page at heroku.com):
+
+    heroku config:set SECRET_KEY='YOUR-SECRET-KEY'
+    heroku config:set AWS_STORAGE_BUCKET_NAME='YOUR-BUCKET_NAME'
+    heroku config:set AWS_ACCESS_KEY_ID='YOUR-AWS-ACCESS-KEY'
+    heroku config:set AWS_SECRET_ACCESS_KEY='YOUR-AWS-SECRET-KEY'
