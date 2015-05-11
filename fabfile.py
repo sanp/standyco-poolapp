@@ -5,6 +5,8 @@
 
 import os
 import errno
+import yaml
+from subprocess import call
 from fabric.api import *
 from fabric.colors import green, red, yellow
 # Style guide: use green for user input, yellow for printing messages to the

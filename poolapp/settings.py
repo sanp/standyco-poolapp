@@ -25,11 +25,6 @@ settings = yaml.safe_load(f)
 ENV_SETTINGS = settings[ENV_NAME]
 f.close()
 
-# Secret yamlsettings
-f = open('%s/poolapp/deploy/secret.yaml' % (BASE_DIR))
-SECRET_SETTINGS = yaml.safe_load(f)
-f.close()
-
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
 
@@ -37,7 +32,7 @@ TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_SETTINGS['secret_key']
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV_SETTINGS['debug']
@@ -131,9 +126,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #Storage on S3 settings are stored as os.environs to keep settings.py clean
 USE_AMW_FOR_STATICFILES = ENV_SETTINGS['use_amw_for_staticfiles']
 if USE_AMW_FOR_STATICFILES:
-  AWS_STORAGE_BUCKET_NAME = SECRET_SETTINGS['aws_storage_bucket_name']
-  AWS_ACCESS_KEY_ID = SECRET_SETTINGS['aws_access_key_id']
-  AWS_SECRET_ACCESS_KEY = SECRET_SETTINGS['aws_secret_access_key']
+  AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+  AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+  AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
   STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
   S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
   STATIC_URL = S3_URL
