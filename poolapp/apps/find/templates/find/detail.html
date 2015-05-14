@@ -3,10 +3,10 @@
 
 {# HTMLDjango does indexing with a dot, not brackets #}
 {# week_list.0.week returns the week attribute from the first member of week_list #}
-{% block title %} {{ tourney.title }} {% endblock %}
-{% block header %} {{ tourney.title }} {% endblock %}
 
 {% block content %}
+
+<a href="{% url 'poolapp.apps.find.views.index' %}">States</a>: <a href="{% url 'poolapp.apps.find.views.index' %}state/IL">{{ tourney.state }}</a> > Tournaments
 
 {% if tourney %}
     <!-- Tournament Info -->
@@ -15,7 +15,7 @@
           <table style="width: 80%;">
             <!-- |title filter converts text field into 'title case' - cap first -->
             <!-- word of every line -->
-            <tr><td><b>{{ tourney.title|title }}</b></td></tr>
+            <tr><td><h1>{{ tourney.title|title }}</h1></td></tr>
             <tr><td></td></tr>
             <tr><td></td></tr>
             <tr>
@@ -29,25 +29,23 @@
             <tr><td>Entry Fee: ${{ tourney.fee|intcomma }}.</td></tr>
             <tr><td>Added Money: ${{ tourney.added_money|intcomma }} 
                     (based on a full field).</td></tr>
-
+            <tr><td>
+                Format: {{ tourney.get_tourney_format_display }}
+            </td></tr>
             <tr><td>Start time: {{ tourney.start_time }}</td></tr>
-
             {% if tourney.end_time %}
                 <tr><td>End time: {{ tourney.end_time }}</td></tr>
             {% endif %}
-
-            <tr><td>
-                Format: {{ tourney.get_tourney_format_display }}, One Day 
-                ("IRON MAN") <i>STEVE: What is that? What variable
-                corresponds to this?</i>
-            </td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td>
-                For additional information contact {{ tourney.contact_name|title }} at
+            <tr><td>Contact: {{ tourney.contact_name|title }} at
                 {{ tourney.formatted_contact_phone }}, or
                 {{ tourney.contact_email }}.
             </td></tr>
+
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            {% if tourney.adtnl_info %}
+                <tr><td>Additional Notes: {{ tourney.adtnl_info }}</td></tr>
+            {% endif %}
 
           </table>
         </td>
