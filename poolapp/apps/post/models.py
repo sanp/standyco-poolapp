@@ -55,12 +55,13 @@ class Tourney(models.Model):
   state = USStateField(choices=STATE_CHOICES, default='IL')
   # TODO: add cities
   # TODO: add sub-city regions
-  pool_hall = models.CharField(max_length=200)
+  pool_hall = models.CharField(max_length=200, verbose_name="Location")
   game = models.IntegerField(choices=GAME_CHOICES, default=EIGHT_BALL)
   field_size = models.IntegerField(choices=FIELD_SIZE_CHOICES,
       default=THIR_P)
   date = models.DateField('Tournament Date')
-  fee = models.DecimalField(max_digits=6, decimal_places=2)
+  fee = models.DecimalField(max_digits=6, decimal_places=2, 
+      verbose_name="Entry Fee")
   added_money = models.DecimalField(max_digits=6, decimal_places=2)
   tourney_format = models.IntegerField(choices=TOURNEY_FORMAT_CHOICES, 
       default=SINGLE)
