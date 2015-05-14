@@ -1,14 +1,33 @@
 {% load staticfiles %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
     <title>{% block title %}Pool Site{% endblock %}</title>
-    <meta name="description" content="Pool Site" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="language" content="English" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/normalize.css' %} media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/style.css' %} media="screen,projection" />
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>
+		$(function() {
+			var pull 		= $('#pull');
+				menu 		= $('nav ul');
+				menuHeight	= menu.height();
 
-    <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/master.css' %} media="screen,projection" />
+			$(pull).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+
+			$(window).resize(function(){
+        		var w = $(window).width();
+        		if(w > 320 && menu.is(':hidden')) {
+        			menu.removeAttr('style');
+        		}
+    		});
+		});
+	</script>
 
     {% block javascript %}
     {% endblock %}
@@ -18,43 +37,15 @@
 
 <body>
 
-    <div id="wrapper-home">
-    <div id="upper">
-    <div id="header">
-
-    </div>	<!-- left is close -->
-
-    <div class="u_ri">
-    <center><font size="6" color="black">{% block header %}Pool Site{% endblock %}</font></center>
-    <div class="page_header"><p><img src="{{STATIC_URL}}poolapp/img/balls.jpg" alt"Pool Balls" ></p></div>
-
-
-    </div>	<!-- right side is close -->
-    </div>	<!-- header  is close -->
-        </div><!--  upper is close-->
-        
-
-    <div style="clear:both"></div>
-    <div id="middle">
-
-    <div id="mainbody"  class="pageWide" style="background:#ffff;">
-    <br />
-
-    {% block menubar %}
-    <!--menu with links to other pages -->
-    <center>
-    <table width="600px" style="vertical-align:top;text-align:center;" border="2" >
-      <tr>
-        <td><a href="/">Home</a></td>
-        <td><a href="/tournaments/find/">Find a Tournament</a></td>
-        <td><a href="/tournaments/post/">Post a Tournament</a></td>
-        <td><a href="/forums/">Forums</a></td>
-      </tr>
-    </tr>
-    </table>
-    </center>
-    <br /><br />
-    {% endblock %}
+    <nav class="clearfix">
+        <ul class="clearfix">
+            <li><a href="/">Home</a></li>
+            <li><a href="/tournaments/find/">Find a Tournament</a></li>
+            <li><a href="/tournaments/post/">Post a Tournament</a></li>
+            <li><a href="/forums/">Forums</a></li>
+        </ul>
+        <a href="#" id="pull">Menu</a>
+    </nav>
 
     <div id="content">
         {% block content %}{% endblock %}
@@ -63,9 +54,6 @@
 
     <br /><br /><br />
 
-    </div>	<!-- down is close -->
-    </div>	<!-- header is close -->
-    
     <div id="footer_new">
 
     <p style="font-size: 10px;color:#000000;text-align:center;">
