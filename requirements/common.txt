@@ -18,5 +18,8 @@ paramiko==1.15.2
 phonenumbers==7.0.4
 psycopg2==2.6
 pycrypto==2.6.1
+pyparsing==2.0.3
+sass==2.3
+scss==0.8.73
 static3==0.5.1
 wsgiref==0.1.2
