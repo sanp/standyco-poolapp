@@ -6,11 +6,24 @@
 
 {% block content %}
 
-<a href="{% url 'poolapp.apps.find.views.index' %}">States</a>: <a href="{% url 'poolapp.apps.find.views.index' %}state/IL">{{ tourney.state }}</a> > Tournaments
+<center><h1>Find a Tournament!</h1></center>
+
+<div class="row">
+    <div class="small-12 large-12 columns">
+        <ul class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'poolapp.apps.find.views.index' %}">Find</a></li>
+            <li class="unavailable"><a href="#">State</a></li>
+            <li><a href="{% url 'poolapp.apps.find.views.index' %}state/{{ tourney.state }}">{{ tourney.state }}</a></li>
+            <li class="current"><a href="#">{{ tourney.title }}</a></li>
+        </ul>
+    </div>
+</div>
+
 
 {% if tourney %}
     <!-- Tournament Info -->
-    <div align="center">
+    <div class="small-12 large-12 columns" align="center">
         <td>
           <table style="width: 80%;">
             <!-- |title filter converts text field into 'title case' - cap first -->

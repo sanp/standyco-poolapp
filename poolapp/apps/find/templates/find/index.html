@@ -7,24 +7,30 @@
 
 {% if state_list %}
 
-<div align="center">
-    <td>
-      <table>
-        <!-- |title filter converts text field into 'title case' - cap first -->
-        <!-- word of every line -->
-        <tr><td><b>Select your state</b></td></tr>
-        <tr><td></td></tr>
-        <tr><td>
-            {% for state in state_list %}
-            <!-- No slash before state otherwise the link will break -->
-            <center><a href="state/{{ state }}/">{{ state }}</a><br /></center>
-            {% endfor %}
-        </td></tr>
-
-      </table>
-    </td>
+<div class="row">
+    <div class="small-12 large-12 columns">
+        <ul class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="current"><a href="#">Find</a></li>
+        </ul>
+    </div>
 </div>
 
+<div class="row">
+    <div class="small-12 large-12 columns" align="center">
+          <table>
+            <!-- |title filter converts text field into 'title case' - cap first -->
+            <!-- word of every line -->
+            <tr><td><b>Select your state</b></td></tr>
+            <tr><td>
+                {% for state in state_list %}
+                <!-- No slash before state otherwise the link will break -->
+                <center><a href="state/{{ state }}/">{{ state }}</a><br /></center>
+                {% endfor %}
+            </td></tr>
+          </table>
+    </div>
+</div>
 
 {% else %}
     <p>No tournaments are available.</p>
