@@ -6,3 +6,46 @@
   background: #ccc;
   padding: 20px;
 }
+
+/* Title styling */
+.top-bar .title-area h1 a {
+    font-family: "Open Sans","Helvetica Neue","Helvetica",Arial,Verdana,sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+}
+.top-bar .name h1 a {
+    font-size: 17px;
+    opacity: 0.75;
+    padding: 0;
+    text-rendering: auto;
+    transition: all 0.25s ease-in-out 0s;
+}
+.top-bar .name h1 a {
+    width: auto;
+}
+.top-bar .name h1 a {
+    color: #FFFFFF;
+    display: block;
+    font-weight: bold;
+    padding: 0 15px;
+}
+
+/* Menu */
+
+.top-bar .top-bar-section ul.right li a, .top-bar .top-bar-section ul.preview li a {
+    border-left: 1px solid #5C5C5C;
+    border-right: 1px solid #000000;
+    font-size: 13px;
+}
+
+.top-bar .top-bar-section a {
+    font-weight: 500;
+    font-family: "Open Sans","Helvetica Neue","Helvetica",Arial,Verdana,sans-serif !important;
+}
+
+.active {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}

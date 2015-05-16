@@ -5,10 +5,15 @@
 <head>
     <title>{% block title %}Pool Site{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700"/>
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/js/foundation-5.5.2/css/normalize.css' %} media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/js/foundation-5.5.2/css/foundation.css' %} media="screen,projection" />
+
+    <!-- Make sure style.css is below foundation.css as it overrides some of the
+         default top bar classes in foundation.css -->
     <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/style.css' %} media="screen,projection" />
 
-    <link rel="stylesheet" type="text/css" href={% static 'poolapp/js/foundation-5.5.2/css/foundation.css' %} media="screen,projection" />
-    <link rel="stylesheet" type="text/css" href={% static 'poolapp/js/foundation-5.5.2/css/normalize.css' %} media="screen,projection" />
     <script src="{% static 'poolapp/js/foundation-5.5.2/js/vendor/modernizr.js' %}"></script>
 
     {% block javascript %}
