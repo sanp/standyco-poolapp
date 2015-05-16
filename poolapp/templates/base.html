@@ -4,30 +4,11 @@
 <html>
 <head>
     <title>{% block title %}Pool Site{% endblock %}</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/normalize.css' %} media="screen,projection" />
     <link rel="stylesheet" type="text/css" href={% static 'poolapp/css/style.css' %} media="screen,projection" />
-	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>
-		$(function() {
-			var pull 		= $('#pull');
-				menu 		= $('nav ul');
-				menuHeight	= menu.height();
 
-			$(pull).on('click', function(e) {
-				e.preventDefault();
-				menu.slideToggle();
-			});
-
-			$(window).resize(function(){
-        		var w = $(window).width();
-        		if(w > 320 && menu.is(':hidden')) {
-        			menu.removeAttr('style');
-        		}
-    		});
-		});
-	</script>
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/js/foundation-5.5.2/css/foundation.css' %} media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href={% static 'poolapp/js/foundation-5.5.2/css/normalize.css' %} media="screen,projection" />
+    <script src="{% static 'poolapp/js/foundation-5.5.2/js/vendor/modernizr.js' %}"></script>
 
     {% block javascript %}
     {% endblock %}
@@ -37,15 +18,52 @@
 
 <body>
 
-    <nav class="clearfix">
-        <ul class="clearfix">
-            <li><a href="/">Home</a></li>
-            <li><a href="/tournaments/find/">Find a Tournament</a></li>
-            <li><a href="/tournaments/post/">Post a Tournament</a></li>
-            <li><a href="/forums/">Forums</a></li>
+<!-- See http://foundation.zurb.com/docs/components/topbar.html -->
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Tournament Finder</a></h1>
+        </li>
+         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/tournaments/find/">Find a Tournament</a></li>
+          <li><a href="/tournaments/post/">Post a Tournament</a></li>
+          <li><a href="/forums/">Forums</a></li>
+
+<!--           <li class="active"><a href="#">Right Button Active</a></li> -->
+          <li class="has-dropdown">
+            <a href="#">About Us</a>
+            <ul class="dropdown">
+              <li><a href="#">Who We Are</a></li>
+              <li class="active"><a href="#">Contact Us</a></li>
+            </ul>
+          </li>
         </ul>
-        <a href="#" id="pull">Menu</a>
+
+        <!-- Left Nav Section -->
+<!--         <ul class="left"> -->
+<!--           <li><a href="#">Left Nav Button</a></li> -->
+<!--         </ul> -->
+
+      </section>
     </nav>
+
+<!--     <nav class="clearfix"> -->
+<!--         <ul class="clearfix"> -->
+<!--             <li><a href="/">Home</a></li> -->
+<!--             <li><a href="/tournaments/find/">Find a Tournament</a></li> -->
+<!--             <li><a href="/tournaments/post/">Post a Tournament</a></li> -->
+<!--             <li><a href="/forums/">Forums</a></li> -->
+<!--         </ul> -->
+<!--         <a href="#" id="pull">Menu</a> -->
+<!--     </nav> -->
 
     <div id="content">
         {% block content %}{% endblock %}
@@ -64,6 +82,19 @@
      <div id="copyright"><p style="font-size: 10px;color:#b0c4de;text-align:center">&copy; 2015 Standyco, Inc. All Rights Reserved. </p>   </div>
 
     </div>	<!-- wrapper is close -->
+
+    <!-- Foundation Top Bar: for navigation bar -->
+    <script src="{% static 'poolapp/js/foundation-5.5.2/js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'poolapp/js/foundation-5.5.2/js/vendor/fastclick.js' %}"></script>
+
+    <script src="{% static 'poolapp/js/foundation-5.5.2/js/foundation.min.js' %}"></script>
+    <script src="{% static 'poolapp/js/foundation-5.5.2/js/foundation/foundation.js' %}"></script>
+    <script src="{% static 'poolapp/js/foundation-5.5.2/js/foundation/foundation.topbar.js' %}"></script>
+    <!-- Other JS plugins can be included here -->
+
+    <script>
+        $(document).foundation();
+    </script>
 
     {% block bottomjs %}
     {% endblock %}
