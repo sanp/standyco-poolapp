@@ -2,3 +2,4 @@ TODOs
 .DS_Store
 *.pyc
 secret.yaml
+logfile
