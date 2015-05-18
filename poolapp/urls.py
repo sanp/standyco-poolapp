@@ -10,7 +10,6 @@ urlpatterns = patterns('',
     url(r'^tournaments/post/', include('poolapp.apps.post.urls')),
     url(r'^tournaments/find/', include('poolapp.apps.find.urls')),
     url(r'^forums/', include('poolapp.apps.forums.urls')),
-    url(r'^', include('favicon.urls')),
 )
 
 if settings.DEBUG:

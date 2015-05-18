@@ -58,7 +58,6 @@ INSTALLED_APPS = (
     # storages and boto for hosting static files in amazing s3
     'storages',
     'boto',
-    'favicon',  # For the favicon, duh
     # Site apps
     'poolapp.apps.home',
     'poolapp.apps.post',
@@ -129,7 +128,3 @@ if USE_AMW_FOR_STATICFILES:
   STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
   S3_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
   STATIC_URL = S3_URL
-
-# Custom path to the favicon.ico file -- must be used with the django-favicon
-# installed app
-FAVICON_PATH = STATIC_URL + 'poolapp/img/favicon.ico'
