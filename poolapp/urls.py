@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
@@ -10,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^tournaments/post/', include('poolapp.apps.post.urls')),
     url(r'^tournaments/find/', include('poolapp.apps.find.urls')),
     url(r'^forums/', include('poolapp.apps.forums.urls')),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
 )
 
 if settings.DEBUG:
