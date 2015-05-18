@@ -11,7 +11,8 @@ urlpatterns = patterns('',
     url(r'^tournaments/post/', include('poolapp.apps.post.urls')),
     url(r'^tournaments/find/', include('poolapp.apps.find.urls')),
     url(r'^forums/', include('poolapp.apps.forums.urls')),
-    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='%sfavicon.ico' %
+      settings.STATIC_URL)),
 )
 
 if settings.DEBUG:
