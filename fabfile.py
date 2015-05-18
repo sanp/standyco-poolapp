@@ -12,30 +12,33 @@ from fabric.colors import green, red, yellow
 # Style guide: use green for user input, yellow for printing messages to the
 # console, and red for errors/exceptions
 
-def deploy(environment_name='development', port='8080'):
+def deploy(environment_name='development', branch='master', port='8080'):
   if environment_name not in ('production', 'development', 'staging'):
     raise ValueError(
         'Environment must be either production, development, or staging')
 
   set_env(environment_name)
+  local('pip freeze > requirements/common.txt')
   commit_environment_yaml(environment_name)
 
-  local('pip freeze > requirements/common.txt')
-  if environment_name == 'production':
-    deploy_remote()
-  else:
+  if environment_name == 'development':
     deploy_local(port)
+  else:
+    deploy_remote(environment_name, branch)
 
 def deploy_local(port='8080'):
   print(yellow('Starting development server on port %s...' % (port), bold=True))
   local('python manage.py runserver %s' % (port))
 
-def deploy_remote():
+def deploy_remote(environment, branch):
+  print(yellow('Now deploying the %s branch to the %s environment...' 
+    % (branch, environment), bold=True))
   print(yellow('Pushing the latest snapshot to Heroku...', bold=True))
   # Display a site-maintenanze message if people visit the site during
   # deployment
   local('heroku maintenance:on')
-  local('git push heroku master')
+  # Todo: update with heroku remote name for staging vs prod
+  local('git push heroku %s' % branch)
   local('heroku maintenance:off')
 
 def set_env(environment_name):
@@ -54,20 +57,12 @@ def commit_environment_yaml(environment_name):
   """
   print(yellow('Committing changes to environment.yaml file...', bold=True))
   local('git add poolapp/deploy/environment.yaml')
-  if environment_name == 'production':
-    # In production, use allow empty to force a commit even with no changes.
-    # This is useful for always having a record of when production deploys
-    # happen in the git log.
-    local('git commit --allow-empty -m "Deploying app to %s. Updated environment.yaml"' %
-        environment_name)
-  else:
-    # Don't care when development deployments happen so no need to log them in a
-    # commit message if it's an empty commit.
-    try:
-      local('git commit -m "Deploying app to %s. Updated environment.yaml"' %
-          environment_name)
-    except:
-      print(green('Nothing new to commit.', bold=True))
+  # Fab will throw an error if you try to commit a repo with no new changes, so
+  # wrap in a try-catch to avoid this.
+  try:
+    local('git commit -m "Deploying app to %s."' % environment_name)
+  except:
+    print(green('Nothing new to commit.', bold=True))
       
 
 def write_file(data, path):
