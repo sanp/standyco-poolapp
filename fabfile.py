@@ -36,11 +36,11 @@ def deploy_remote(environment, branch):
   print(yellow('Pushing the latest snapshot to Heroku...', bold=True))
   # Display a site-maintenanze message if people visit the site during
   # deployment
-  local('heroku maintenance:on' % environment)
+  local('heroku maintenance:on')
   # Make sure that the staging and production remotes are named 'staging' and
   # 'production' respectively.
   local('git push %s %s' % (environment, branch))
-  local('heroku maintenance:off' % environment)
+  local('heroku maintenance:off')
 
 def set_env(environment_name):
   env_yaml_file = 'poolapp/deploy/environment.yaml'
