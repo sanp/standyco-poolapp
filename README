@@ -21,3 +21,6 @@ If running locally (in development), make sure you've started the postgres
 server, first: 
     pg_ctl -D /usr/local/var/postgres -l logfile start
 or something similar, depending on where your postgres is installed.
+
+Make sure that your git remotes are named staging and production for the
+relevant environments.

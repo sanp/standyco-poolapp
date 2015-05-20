@@ -37,8 +37,9 @@ def deploy_remote(environment, branch):
   # Display a site-maintenanze message if people visit the site during
   # deployment
   local('heroku maintenance:on')
-  # Todo: update with heroku remote name for staging vs prod
-  local('git push heroku %s' % branch)
+  # Make sure the remotes are named according to what environment is being used
+  # -- staging or production
+  local('git push %s %s' % (environment, branch))
   local('heroku maintenance:off')
 
 def set_env(environment_name):
