@@ -39,7 +39,7 @@ def deploy_remote(environment, branch):
   local('heroku maintenance:on')
   # Make sure the remotes are named according to what environment is being used
   # -- staging or production
-  local('git push %s %s' % (environment, branch))
+  local('git push staging %s' % (branch) )
   local('heroku maintenance:off')
 
 def set_env(environment_name):
