@@ -129,3 +129,11 @@ if USE_AMW_FOR_STATICFILES:
   STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
   S3_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
   STATIC_URL = S3_URL
+
+# For sending emails using gmail smtp server
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'standyco.inc@gmail.com'
+EMAIL_HOST_PASSWORD = 'e0*KgN&7oO$@'

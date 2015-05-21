@@ -7,4 +7,6 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     # ex: /about/contact
     url(r'contact/$', views.contact, name='contact'),
+    # ex: /about/thanks
+    url(r'contact/thanks/$', views.thanks, name='thanks'),
 )
