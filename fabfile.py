@@ -32,6 +32,13 @@ def deploy_local(port='8080'):
   local('python manage.py runserver %s' % (port))
 
 def deploy_remote(environment, branch):
+
+  # Each environment has a different heroku app associated wit it.
+  app_name = {
+      'production': 'standyco-poolapp',
+      'staging': 'standyco-poolapp-staging'
+      }
+
   print(yellow('Now deploying the %s branch to the %s environment...' 
     % (branch, environment), bold=True))
   # Push to github
@@ -40,11 +47,11 @@ def deploy_remote(environment, branch):
   print(yellow('Pushing the latest snapshot to Heroku...', bold=True))
   # Display a site-maintenanze message if people visit the site during
   # deployment
-  local('heroku maintenance:on')
+  local('heroku maintenance:on --app %s' % app_name[environment])
   # Make sure that the staging and production remotes are named 'staging' and
   # 'production' respectively.
   local('git push %s %s' % (environment, branch))
-  local('heroku maintenance:off')
+  local('heroku maintenance:off --app %s' % app_name[environment])
 
 def set_env(environment_name):
   env_yaml_file = 'poolapp/deploy/environment.yaml'
