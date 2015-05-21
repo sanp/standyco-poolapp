@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'poolapp.apps.post',
     'poolapp.apps.find',
     'poolapp.apps.forums',
+    'poolapp.apps.about',
 )
 
 MIDDLEWARE_CLASSES = (

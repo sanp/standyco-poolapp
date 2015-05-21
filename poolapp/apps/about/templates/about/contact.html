@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <br />
+
+    <div class="row">
+     
+         
+      <div class="large-9 medium-10 columns">
+     
+          <h3>Get in Touch!</h3>
+          <p>We'd love to hear from you. If you have a question about the site,
+          a comment or suggestion on how we could improve, or just want to say
+          hi, reach out to us and someone on our team will get back to you.
+          </p>
+     
+          <div class="section-container tabs" data-section>
+            <section class="section">
+              <h5 class="title"><a href="#panel1">Send us an email</a></h5>
+              <div class="content" data-slug="panel1">
+                <form>
+                  <div class="row collapse">
+                    <div class="large-2 medium-2 columns">
+                      <label class="inline">Your Name</label>
+                    </div>
+                    <div class="large-10 medium-10 columns">
+                      <input type="text" id="yourName" placeholder="Jane Smith">
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="large-2 medium-2 columns">
+                      <label class="inline"> Your Email</label>
+                    </div>
+                    <div class="large-10 medium-10 columns">
+                      <input type="text" id="yourEmail" placeholder="jane@smithco.com">
+                    </div>
+                  </div>
+                  <label>What's up?</label>
+                  <textarea rows="4"></textarea>
+                  <button type="submit" class="radius button">Submit</button>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+     
+    </div>
+     
+{% endblock content %}
