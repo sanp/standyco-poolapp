@@ -16,6 +16,7 @@ these config variables directly in the heroku app's settings page at heroku.com)
     heroku config:set AWS_STORAGE_BUCKET_NAME='YOUR-BUCKET_NAME'
     heroku config:set AWS_ACCESS_KEY_ID='YOUR-AWS-ACCESS-KEY'
     heroku config:set AWS_SECRET_ACCESS_KEY='YOUR-AWS-SECRET-KEY'
+    heroku config:set EMAIL_HOST_PASSWORD='YOUR-EMAIL_PASSWORD'
 
 If running locally (in development), make sure you've started the postgres
 server, first: 
