@@ -21,8 +21,19 @@ def contact(request):
       email = form.cleaned_data['email']
       message_top = 'Sender Name: %s\nSender Email: %s\n\n------------------\n\n' % (name, email)
       message = message_top + form.cleaned_data['message']
+      # Send the email to Standyco
       try:
-        send_mail('Pool App - %s' % name, message, email, ['standyco.inc@gmail.com'])
+        send_mail('Contact Us Email', message, email, ['standyco.inc@gmail.com'])
+      except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+      # Send a confirmation email
+      confirmation_message = '''
+      Thank you for contacting Standyco!\n
+      We have our best guys working on your question, and we will get back to you in no time flat!
+      '''
+      try:
+        send_mail('Thank you for contacting Standyco', confirmation_message,
+            'standyco.inc@gmail.com', [email])
       except BadHeaderError:
         return HttpResponse('Invalid header found.')
       return redirect('thanks')
