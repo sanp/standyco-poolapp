@@ -1,7 +1,8 @@
 # Might have to execute "ssh-add ~/.ssh/id_rsa" in local machine if getting ssh
-# identity errors.
+# identity errors.  Also, make sure your remote branches are called staging and
+# production.
 
-# fab deploy:development,8080 (target-environment,port)
+# fab deploy:production,master (environment,branch)
 
 import os
 import errno
@@ -33,6 +34,9 @@ def deploy_local(port='8080'):
 def deploy_remote(environment, branch):
   print(yellow('Now deploying the %s branch to the %s environment...' 
     % (branch, environment), bold=True))
+  # Push to github
+  print(yellow('Pushing the latest snapshot to Github...', bold=True))
+  local('git push github %s' % (branch))
   print(yellow('Pushing the latest snapshot to Heroku...', bold=True))
   # Display a site-maintenanze message if people visit the site during
   # deployment
