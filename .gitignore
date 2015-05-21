@@ -3,3 +3,4 @@ TODOs
 *.pyc
 secret.yaml
 logfile
+notes/*
