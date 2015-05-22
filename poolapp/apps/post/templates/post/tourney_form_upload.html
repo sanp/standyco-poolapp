@@ -3,21 +3,30 @@
 
 {% block content %}
 
-{% if form.errors %}<h1>Please correct the following errors</h1>
-{% else %}
-<center>
-    <h1>Enter in tournament details</h1>
-</center>
-{% endif %}
 
-<center>
+<div class="row">
+ 
+     
+  <div class="large-9 medium-10 columns">
+ 
+      <h1>Post a Tournament</h1>
+      <hr />
+
+        {% if form.errors %}<h3>Please correct the following errors</h3>
+        {% else %}
+        <h3>Enter in tournament details</h3>
+        {% endif %}
+
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         <input type="hidden" name="{{ stage_field }}" value="1" />
-        <input type='submit' value='Preview your post' />
+        <button type="submit" class="radius button">Preview your post</button>
     </form>
-</center>
+
+    </div>
+
+</div>
 
 {% endblock content %}
 
