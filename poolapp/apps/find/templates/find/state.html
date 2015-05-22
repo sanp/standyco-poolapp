@@ -42,7 +42,7 @@
             Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />
             Format: {{ tourney.get_tourney_format_display }}<br />
             Start Time: {{ tourney.start_time }}<br />
-            Contact: {{ tourney.contact_name|title }} at {{ tourney.contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
+            Contact: {{ tourney.contact_name|title }} at {{ tourney.formatted_contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
             </p>
             <hr/>
         </div>

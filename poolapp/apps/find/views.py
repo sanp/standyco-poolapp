@@ -18,6 +18,13 @@ def index(request):
 def state(request, state_id):
   tourney_list = Tourney.objects.filter(state=state_id).order_by('date')
   tourney_list.state_name = state_id
+  # Add formatting to contact phone
+  for tourney in tourney_list:
+    tourney.formatted_contact_phone = phonenumbers.format_number(
+        phonenumbers.parse(
+            tourney.contact_phone, 'US'),
+            phonenumbers.PhoneNumberFormat.NATIONAL)
+
   context = {'tourney_list': tourney_list}
   return render(request, 'find/state.html', context)
 
