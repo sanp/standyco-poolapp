@@ -16,7 +16,7 @@ def index(request):
   return render(request, 'find/index.html', context)
 
 def state(request, state_id):
-  tourney_list = Tourney.objects.filter(state=state_id)
+  tourney_list = Tourney.objects.filter(state=state_id).order_by('date')
   tourney_list.state_name = state_id
   context = {'tourney_list': tourney_list}
   return render(request, 'find/state.html', context)
