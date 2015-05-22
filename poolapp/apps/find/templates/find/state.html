@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
 
@@ -29,19 +30,22 @@
 
     {% for tourney in tourney_list %}
 
-    <div class="large-2 columns small-3">
-        <img src="http://placehold.it/80x80&text=[img]"/>
-    </div>
-    <div class="large-10 columns">
-        <p><strong>Some Person said:</strong> Bacon ipsum dolor sit amet
-        nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.
-        Aute in reprehenderit, dolore aliqua non est magna in labore pig
-        pork biltong.</p>
-        <ul class="inline-list">
-            <li><a href="#">See more...</a></li>
-        </ul>
-        <hr/>
-    </div>
+        <div class="large-2 columns small-3">
+            <img src="http://placehold.it/80x80&text=[img]"/>
+        </div>
+        <div class="large-10 columns">
+            <p>
+            <a href="{{ tourney.tourney_id }}/"><strong>{{ tourney.title|title }}</strong></a><br />
+            {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }} tournament on {{ tourney.date }}.<br />
+            <!-- Must load humanize to use intcomma -->
+            Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}<br />
+            Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />
+            Format: {{ tourney.get_tourney_format_display }}<br />
+            Start Time: {{ tourney.start_time }}<br />
+            Contact: {{ tourney.contact_name|title }} at {{ tourney.contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
+            </p>
+            <hr/>
+        </div>
 
     {% endfor %}
 
