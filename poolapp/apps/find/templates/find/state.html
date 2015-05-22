@@ -2,8 +2,13 @@
 
 {% block content %}
 
-<center><h1>Find a Tournament!</h1></center>
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Find a tournament</h1>
+    </div>
+</div>
 
+<!-- Breadcrumbs -->
 <div class="row">
     <div class="small-12 large-12 columns">
         <ul class="breadcrumbs">
@@ -15,31 +20,39 @@
     </div>
 </div>
 
-<br />
-
+ 
 <div class="row">
-    <div class="small-12 large-12 columns" align="center">
-      {% if tourney_list %}
+      
+    <!-- Tournament Info at a glance for each tournament -->
 
-          <table>
-            <!-- |title filter converts text field into 'title case' - cap first -->
-            <!-- word of every line -->
-            <tr><td><b>Select a tournament</b></td></tr>
-            <tr><td>
-                {% for tourney in tourney_list %}
-                <!-- No slash before state otherwise the link will break -->
-                    <a href="{{ tourney.tourney_id }}/">
-                        {{ tourney.date }} &mdash; {{ tourney.title }}: {{ tourney.get_game_display }} tournament at {{ tourney.pool_hall }}
-                    </a><br /><br />
-                {% endfor %}
-            </td></tr>
-          </table>
+    {% if tourney_list %}
 
-        {% else %}
-            <p>No tournaments are available.</p>
-        {% endif %}
+    {% for tourney in tourney_list %}
 
+    <div class="large-2 columns small-3">
+        <img src="http://placehold.it/80x80&text=[img]"/>
     </div>
-</div>
+    <div class="large-10 columns">
+        <p><strong>Some Person said:</strong> Bacon ipsum dolor sit amet
+        nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.
+        Aute in reprehenderit, dolore aliqua non est magna in labore pig
+        pork biltong.</p>
+        <ul class="inline-list">
+            <li><a href="#">See more...</a></li>
+        </ul>
+        <hr/>
+    </div>
 
+    {% endfor %}
+
+    {% else %}
+
+        <div class="large-12 columns">
+            <h5>Oops! There are no tournaments to show!</h5>
+        </div>
+
+    {% endif %}
+
+</div>
+     
 {% endblock %}
