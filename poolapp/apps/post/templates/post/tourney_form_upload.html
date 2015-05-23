@@ -3,30 +3,295 @@
 
 {% block content %}
 
+<br />
+
 
 <div class="row">
- 
-     
-  <div class="large-9 medium-10 columns">
- 
-      <h1>Post a Tournament</h1>
-      <hr />
+  <div class="large-6 medium-6 large-centered medium-centered columns">
 
-        {% if form.errors %}<h3>Please correct the following errors</h3>
-        {% else %}
-        <h3>Enter in tournament details</h3>
-        {% endif %}
+    <!-- Page title section open -->
+    <div class="row">
+        <div class="large-12 medium-12 columns">
+            <h3>Post a tournament</h3>
+            <hr/>
+        </div>
+    </div>
+    <!-- Page title section close -->
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="hidden" name="{{ stage_field }}" value="1" />
-        <button type="submit" class="radius button">Preview your post</button>
-    </form>
+    <!-- Body section open -->
+    <div class="row">
+
+      <div class="large-12 medium-12 columns">
+
+        <form method="post">
+          {% csrf_token %}
+
+          <!-- Start of Title Section -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Title</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-12 medium-12 columns">
+                <label>Give your tournament a title
+                  {{ form.title }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of Additional Info section -->
+
+          <br />
+
+          <!-- Start of Place section -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Place</h4>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="large-6 medium-6 columns">
+                <label>Choose your state
+                  {{ form.state }}
+                </label>
+              </div>
+
+<!--               <div class="large-6 medium-6 columns"> -->
+<!--                 <label>Choose your city -->
+<!--                   {{ form.state }} -->
+<!--                 </label> -->
+<!--               </div> -->
+
+            </div>
+
+            <!-- Text input box -->
+            <div class="row">
+              <div class="large-12 columns">
+                <label>Establishment
+                  {{ form.pool_hall }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of place section -->
+
+          <br />
+
+          <!-- Start of Structure section -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Structure</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Choose a game
+                  {{ form.game }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Field size
+                  {{ form.field_size }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Tournament format
+                  {{ form.tourney_format }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of structure section -->
+
+          <br />
+
+          <!-- Start of Money section -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Money</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Entry fee
+                  {{ form.fee }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Added money
+                  {{ form.added_money }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of Money section -->
+
+          <br />
+
+          <!-- Start of Time section -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Time</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Date
+                  {{ form.date }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-6 medium-6 columns">
+                <label>Start time
+                  {{ form.start_time }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of Time section -->
+
+          <br />
+
+          <!-- Start of Contact section -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Contact</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-12 medium-12 columns">
+                <label>Contact name
+                  {{ form.contact_name }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-12 medium-12 columns">
+                <label>Contact phone
+                  {{ form.contact_phone }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-12 medium-12 columns">
+                <label>Contact email
+                  {{ form.contact_email }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of Contact section -->
+
+          <br />
+
+          <!-- Start of Additional Info -->
+          <div class="post_page_section">
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Almost done!</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Select box -->
+              <div class="large-12 medium-12 columns">
+                <label>Additional Info
+                  {{ form.adtnl_info }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- End of Additional Info section -->
+
+
+          <br />
+          <button type="submit" class="radius button">Submit</button>
+
+        </form>
+
+      </div>
 
     </div>
+  <!-- Body section close -->
 
+  </div>
 </div>
+
+
+<!-- <div class="row"> -->
+<!--       -->
+<!--   <div class="large-9 medium-10 columns"> -->
+<!--   -->
+<!--     <h1>Post a Tournament</h1> -->
+<!--     <hr /> -->
+<!--      -->
+<!--     {% if form.errors %} -->
+<!--       <h3>Please correct the following errors</h3> -->
+<!--     {% else %} -->
+<!--       <h3>Enter in tournament details</h3> -->
+<!--     {% endif %} -->
+<!--      -->
+<!--     <form action="" method="post"> -->
+<!--       {% csrf_token %} -->
+<!--       {{ form }} -->
+<!--       <input type="hidden" name="{{ stage_field }}" value="1" /> -->
+<!--       <button type="submit" class="radius button">Preview your post</button> -->
+<!--     </form> -->
+<!--      -->
+<!--   </div> -->
+<!-- </div> -->
 
 {% endblock content %}
 

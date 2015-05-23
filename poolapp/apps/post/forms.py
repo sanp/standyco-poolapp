@@ -25,11 +25,29 @@ class TourneyForm(ModelForm):
       'adtnl_info'
     )
     widgets = {
-            'adtnl_info': forms.Textarea,
-            'date': forms.TextInput(attrs={'class':'datepicker'}),
-            'start_time': forms.TextInput(attrs={'class':'timepicker', 
-                'autocomplete':'off'}),
+            'title': forms.TextInput(attrs={'placeholder':'My Awesome Tournament'}),
+            'pool_hall': forms.TextInput(attrs={'placeholder':'My Awesome Pool Hall'}),
+            'fee': forms.TextInput(attrs={'placeholder':'123'}),
+            'added_money': forms.TextInput(attrs={'placeholder':'123'}),
+            'date': forms.TextInput(attrs={
+                'class':'datepicker',
+                'placeholder': 'mm/dd/yyyy'
+              }),
+            'start_time': forms.TextInput(attrs={
+                'class':'timepicker', 
+                'autocomplete':'off',
+                'placeholder': 'hh:mm'
+              }),
             'end_time': forms.TextInput(attrs={'class':'timepicker', 
                 'autocomplete':'off'}),
-            'contact_phone': forms.TextInput(attrs={'class':'phone'}),
+            'contact_phone': forms.TextInput(attrs={
+                'class':'phone',
+                'placeholder': '(201) 555-5555'
+              }),
+            'contact_name': forms.TextInput(attrs={'placeholder':'Jane Smith'}),
+            'contact_email': forms.TextInput(attrs={'placeholder':'jane@smithco.com'}),
+            'adtnl_info': forms.Textarea(attrs={
+                'rows': '3',
+                'placeholder':'Feel free to give any extra information you want.'
+              }),
         }

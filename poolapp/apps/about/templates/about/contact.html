@@ -2,57 +2,56 @@
 
 {% block content %}
 
-  <br />
+<br />
 
-    <div class="row">
-     
-         
-      <div class="large-9 medium-10 columns">
-     
-          <h3>Get in Touch!</h3>
-          <p>We'd love to hear from you. If you have a question about the site,
-          a comment or suggestion on how we could improve, or just want to say
-          hi, reach out to us and someone on our team will get back to you.
-          </p>
+<div class="row">
 
 
-<form method="post">
-    {% csrf_token %}
+  <div class="large-9 medium-10 columns">
 
-      <div class="section-container tabs" data-section>
-        <section class="section">
-          <h5 class="title">
-              <a href="mailto:standyco.inc@gmail.com?Subject=Pool%20App" target="_top">Send us an email</a></h5>
-          <div class="content" data-slug="panel1">
-            <form>
-              <div class="row collapse">
-                <div class="large-2 medium-2 columns">
-                  <label class="inline">Your Name</label>
-                </div>
-                <div class="large-10 medium-10 columns">
-                  <input type="text" id="id_name" name="name" placeholder="Jane Smith">
-                </div>
+    <h3>Get in Touch!</h3>
+    <p>We'd love to hear from you. If you have a question about the site,
+    a comment or suggestion on how we could improve, or just want to say
+    hi, reach out to us and someone on our team will get back to you.
+    </p>
+
+
+    <div class="section-container tabs" data-section>
+      <section class="section">
+        <h5 class="title">
+          <a href="mailto:standyco.inc@gmail.com?Subject=Pool%20App" target="_top">Send us an email</a></h5>
+        <div class="content" data-slug="panel1">
+
+          <form method="post">
+            {% csrf_token %}
+            <div class="row collapse">
+              <div class="large-2 medium-2 columns">
+                <label class="inline">Your Name</label>
               </div>
-              <div class="row collapse">
-                <div class="large-2 medium-2 columns">
-                  <label class="inline"> Your Email</label>
-                </div>
-                <div class="large-10 medium-10 columns">
-                  <input type="email" id="id_email" name="email" placeholder="jane@smithco.com">
-                </div>
+              <div class="large-10 medium-10 columns">
+                <input type="text" id="id_name" name="name" placeholder="Jane Smith">
               </div>
-              <label>What's up?</label>
-              <textarea rows="4" name="message"></textarea>
-              <button type="submit" class="radius button">Submit</button>
-            </form>
-          </div>
-        </section>
-      </div>
+            </div>
+            <div class="row collapse">
+              <div class="large-2 medium-2 columns">
+                <label class="inline"> Your Email</label>
+              </div>
+              <div class="large-10 medium-10 columns">
+                <input type="email" id="id_email" name="email" placeholder="jane@smithco.com">
+              </div>
+            </div>
+            <label>What's up?</label>
+            <textarea rows="4" name="message"></textarea>
+            <button type="submit" class="radius button">Submit</button>
+          </form>
+
+        </div>
+      </section>
     </div>
 
-</form>
-     
+  </div>
 
-    </div>
+
+</div>
      
 {% endblock content %}
