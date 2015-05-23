@@ -15,6 +15,7 @@ def tourney_form_upload(request):
  
     # If data is valid, proceeds to create a new post and redirect the user
     if form.is_valid():
+
       state = form.cleaned_data['state']
       pool_hall = form.cleaned_data['pool_hall']
       game = form.cleaned_data['game']
@@ -30,6 +31,22 @@ def tourney_form_upload(request):
       end_time = form.cleaned_data['end_time']
       title = form.cleaned_data['title']
       adtnl_info = form.cleaned_data['adtnl_info']
+
+#       state = 'IL'
+#       pool_hall = 'My hall'
+#       game = 0
+#       field_size = 3
+#       date = '2015-05-09'
+#       fee = 22.00
+#       added_money = 200.00
+#       tourney_format = 1
+#       contact_name = 'Steve'
+#       contact_phone = '6319821234'
+#       contact_email = form.cleaned_data['contact_email']
+#       start_time = '18:00:00'
+#       end_time = '22:00:00'
+#       title = 'Auto gen tournament'
+#       adtnl_info = 'Nothing'
 
       tourney = Tourney.objects.create(
                   state = state,
