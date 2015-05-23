@@ -32,22 +32,6 @@ def tourney_form_upload(request):
       title = form.cleaned_data['title']
       adtnl_info = form.cleaned_data['adtnl_info']
 
-#       state = 'IL'
-#       pool_hall = 'My hall'
-#       game = 0
-#       field_size = 3
-#       date = '2015-05-09'
-#       fee = 22.00
-#       added_money = 200.00
-#       tourney_format = 1
-#       contact_name = 'Steve'
-#       contact_phone = '6319821234'
-#       contact_email = form.cleaned_data['contact_email']
-#       start_time = '18:00:00'
-#       end_time = '22:00:00'
-#       title = 'Auto gen tournament'
-#       adtnl_info = 'Nothing'
-
       tourney = Tourney.objects.create(
                   state = state,
                   pool_hall = pool_hall,

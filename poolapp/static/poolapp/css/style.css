@@ -212,3 +212,13 @@ p, span, li, label {
 *, *:before, *:after {
     -moz-box-sizing: border-box;
 }
+
+/* Form error message at top of page */
+.form-error-msg p, li {
+    color: red;
+    font-size: 12px;
+    font-weight: 350;
+}
+.form-error-msg li {
+    font-weight: 300;
+}
