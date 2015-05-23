@@ -3,26 +3,23 @@
 
 {% block content %}
 
-<br />
+<br /><br />
 
 <div class="row">
 
-  <div class="large-1 medium-1 columns">
-    <br />
-  </div>
-
-  <div class="large-6 medium-6 left columns">
+  <div class="large-6 medium-6 large-centered medium-centered columns">
 
     <!-- Page title section open -->
-    <div class="row">
+    <div class="page-title row">
         <div class="large-12 medium-12 columns">
-            <h3>Post a tournament</h3>
+            Post a tournament
             <hr/>
         </div>
     </div>
     <!-- Page title section close -->
 
     <!-- Body section open -->
+
     <div class="row">
 
       <div class="large-12 medium-12 columns">
@@ -31,18 +28,21 @@
           {% csrf_token %}
 
           <!-- Start of Title Section -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
-              <div class="large-12 columns">
-                <h4>Title</h4>
+            <div class="form-section-title row">
+              <div class="large-10 medium-10 small-10 columns">
+                <p>Title</p>
+              </div>
+              <div class="large-2 medium-2 small-2 columns">
+                <div class="form-section-required">Required</div>
               </div>
             </div>
 
-            <div class="row">
+            <div class="form-group row">
               <!-- Select box -->
-              <div class="large-12 medium-12 columns">
-                <label>Give your tournament a title
+              <div class="required large-12 medium-12 columns">
+                <label>Tournament title
                   {{ form.title }}
                 </label>
               </div>
@@ -54,36 +54,38 @@
           <br />
 
           <!-- Start of Place section -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
+            <div class="form-section-title row">
               <div class="large-12 columns">
-                <h4>Place</h4>
+                <p>Place</p>
               </div>
             </div>
 
-            <div class="row">
+            <div class="form-group">
 
-              <div class="large-6 medium-6 columns">
-                <label>Choose your state
-                  {{ form.state }}
-                </label>
+              <div class="row">
+
+                <div class="required large-6 medium-6 columns">
+                  <label>State
+                    {{ form.state }}
+                  </label>
+                </div>
+
+                <!--               <div class="required large-6 medium-6 columns"> -->
+                <!--                 <label>Choose your city -->
+                <!--                   {{ form.state }} -->
+                <!--                 </label> -->
+                <!--               </div> -->
+
               </div>
 
-<!--               <div class="large-6 medium-6 columns"> -->
-<!--                 <label>Choose your city -->
-<!--                   {{ form.state }} -->
-<!--                 </label> -->
-<!--               </div> -->
-
-            </div>
-
-            <!-- Text input box -->
-            <div class="row">
-              <div class="large-12 columns">
-                <label>Establishment
-                  {{ form.pool_hall }}
-                </label>
+              <div class="row">
+                <div class="required large-12 columns">
+                  <label>Establishment
+                    {{ form.pool_hall }}
+                  </label>
+                </div>
               </div>
             </div>
 
@@ -93,39 +95,41 @@
           <br />
 
           <!-- Start of Structure section -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
+            <div class="form-section-title row">
               <div class="large-12 columns">
-                <h4>Structure</h4>
+                <p>Structure</p>
               </div>
             </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Choose a game
-                  {{ form.game }}
-                </label>
-              </div>
-            </div>
+            <div class="form-group">
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Field size
-                  {{ form.field_size }}
-                </label>
+              <div class="row">
+                <div class="required large-6 medium-6 columns">
+                  <label>Game
+                    {{ form.game }}
+                  </label>
+                </div>
               </div>
-            </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Tournament format
-                  {{ form.tourney_format }}
-                </label>
+              <div class="row">
+                <div class="required large-6 medium-6 columns">
+                  <label>Field size
+                    {{ form.field_size }}
+                  </label>
+                </div>
               </div>
+
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-6 medium-6 columns">
+                  <label>Format
+                    {{ form.tourney_format }}
+                  </label>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -134,30 +138,34 @@
           <br />
 
           <!-- Start of Money section -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
+            <div class="form-section-title row">
               <div class="large-12 columns">
-                <h4>Money</h4>
+                <p>Money</p>
               </div>
             </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Entry fee
-                  {{ form.fee }}
-                </label>
-              </div>
-            </div>
+            <div class="form-group">
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Added money
-                  {{ form.added_money }}
-                </label>
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Entry fee
+                    {{ form.fee }}
+                  </label>
+                </div>
               </div>
+
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Added money
+                    {{ form.added_money }}
+                  </label>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -166,30 +174,43 @@
           <br />
 
           <!-- Start of Time section -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
+            <div class="form-section-title row">
               <div class="large-12 columns">
-                <h4>Time</h4>
+                <p>Time</p>
               </div>
             </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Date
-                  {{ form.date }}
-                </label>
-              </div>
-            </div>
+            <div class="form-group">
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-6 medium-6 columns">
-                <label>Start time
-                  {{ form.start_time }}
-                </label>
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Date
+                    {{ form.date }}
+                  </label>
+                </div>
               </div>
+
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Start time
+                    {{ form.start_time }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Select box -->
+                <div class="large-12 medium-12 columns">
+                  <label>End time
+                    {{ form.end_time }}
+                  </label>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -198,39 +219,43 @@
           <br />
 
           <!-- Start of Contact section -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
+            <div class="form-section-title row">
               <div class="large-12 columns">
-                <h4>Contact</h4>
+                <p>Contact</p>
               </div>
             </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-12 medium-12 columns">
-                <label>Contact name
-                  {{ form.contact_name }}
-                </label>
-              </div>
-            </div>
+            <div class="form-group">
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-12 medium-12 columns">
-                <label>Contact phone
-                  {{ form.contact_phone }}
-                </label>
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Contact name
+                    {{ form.contact_name }}
+                  </label>
+                </div>
               </div>
-            </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-12 medium-12 columns">
-                <label>Contact email
-                  {{ form.contact_email }}
-                </label>
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Contact phone
+                    {{ form.contact_phone }}
+                  </label>
+                </div>
               </div>
+
+              <div class="row">
+                <!-- Select box -->
+                <div class="required large-12 medium-12 columns">
+                  <label>Contact email
+                    {{ form.contact_email }}
+                  </label>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -239,21 +264,25 @@
           <br />
 
           <!-- Start of Additional Info -->
-          <div class="post_page_section">
+          <div class="form-section">
 
-            <div class="row">
+            <div class="form-section-title row">
               <div class="large-12 columns">
-                <h4>Almost done!</h4>
+                <p>Almost done!</p>
               </div>
             </div>
 
-            <div class="row">
-              <!-- Select box -->
-              <div class="large-12 medium-12 columns">
-                <label>Additional Info
-                  {{ form.adtnl_info }}
-                </label>
+            <div class="form-group">
+
+              <div class="row">
+                <!-- Select box -->
+                <div class="large-12 medium-12 columns">
+                  <label>Additional Info
+                    {{ form.adtnl_info }}
+                  </label>
+                </div>
               </div>
+
             </div>
 
           </div>
@@ -261,7 +290,11 @@
 
 
           <br />
-          <button type="submit" class="radius button">Submit</button>
+          <button type="submit" class="button radius expand">Preview your post</button>
+
+          <div class="form-section-notice" style="">
+            Please fill out all required (<span class="star">*</span>) fields.
+          </div>
 
         </form>
 

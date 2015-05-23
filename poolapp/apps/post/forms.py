@@ -27,8 +27,8 @@ class TourneyForm(ModelForm):
     widgets = {
             'title': forms.TextInput(attrs={'placeholder':'My Awesome Tournament'}),
             'pool_hall': forms.TextInput(attrs={'placeholder':'My Awesome Pool Hall'}),
-            'fee': forms.TextInput(attrs={'placeholder':'123'}),
-            'added_money': forms.TextInput(attrs={'placeholder':'123'}),
+            'fee': forms.TextInput(attrs={'placeholder':'$20'}),
+            'added_money': forms.TextInput(attrs={'placeholder':'$2,000'}),
             'date': forms.TextInput(attrs={
                 'class':'datepicker',
                 'placeholder': 'mm/dd/yyyy'
@@ -38,8 +38,11 @@ class TourneyForm(ModelForm):
                 'autocomplete':'off',
                 'placeholder': 'hh:mm'
               }),
-            'end_time': forms.TextInput(attrs={'class':'timepicker', 
-                'autocomplete':'off'}),
+            'end_time': forms.TextInput(attrs={
+                'class':'timepicker', 
+                'autocomplete':'off',
+                'placeholder': 'hh:mm'
+              }),
             'contact_phone': forms.TextInput(attrs={
                 'class':'phone',
                 'placeholder': '(201) 555-5555'
