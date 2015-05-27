@@ -222,3 +222,8 @@ p, span, li, label {
 .form-error-msg li {
     font-weight: 300;
 }
+
+/* Hide 'Other' text boxes by default */
+.other_txt_box {
+    display: none;
+}

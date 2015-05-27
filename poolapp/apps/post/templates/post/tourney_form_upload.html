@@ -126,28 +126,51 @@
             <div class="form-group">
     
               <div class="row">
+
                 <div class="required large-6 medium-6 columns">
                   <label>Game
                     {{ form.game }}
                   </label>
                 </div>
+
+                <div id="other_game" class="other_txt_box large-6 medium-6 columns">
+                  <label>Other Game Type
+                    {{ form.game_other }}
+                  </label>
+                </div>
+
               </div>
     
               <div class="row">
+
                 <div class="required large-6 medium-6 columns">
                   <label>Field size
                     {{ form.field_size }}
                   </label>
                 </div>
+
+                <div id="other_field_size" class="other_txt_box large-6 medium-6 columns">
+                  <label>Other Field size
+                    {{ form.field_size_other }}
+                  </label>
+                </div>
+
               </div>
     
               <div class="row">
-                <!-- Select box -->
+
                 <div class="required large-6 medium-6 columns">
                   <label>Format
                     {{ form.tourney_format }}
                   </label>
                 </div>
+
+                <div id="other_tourney_format" class="other_txt_box large-6 medium-6 columns">
+                  <label>Other Format
+                    {{ form.tourney_format_other }}
+                  </label>
+                </div>
+
               </div>
     
             </div>
@@ -362,6 +385,7 @@
 <script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js'></script>
 <!-- <script src="{% static 'poolapp/js/datetimepicker-master/jquery-1.10.2.js' %}"></script> -->
 <script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script>
+
 <script type='text/javascript'>
     jQuery(function(){
     
@@ -377,6 +401,43 @@
         });
     
     });
+</script>
+
+<script type='text/javascript'>
+  $(document).ready(function() {
+
+      var elements = {
+        // key = formtools div id for dropdown element
+        // value[0] = other option number, from models.py
+        // value[1] = div id for 'other' text box element
+        '#formtools_game': [6, '#other_game'],
+        '#formtools_tourney_format': [2, '#other_tourney_format'],
+        '#formtools_field_size': [5, '#other_field_size']
+      };
+
+      $.each(elements, function( key, value ) {
+
+        // Handle show/hide logic for when page is reloaded, not just when the
+        // menu element changes - for example, if the user hits 'preview', but
+        // there are form errors, the 'Other Game' text box should still appear
+        if($(key).val() == value[0]){
+            $(value[1]).show();
+        }
+        else{
+            $(value[1]).hide();
+        }
+        $(key).change(function() {
+            if($(this).val() == value[0]){
+                $(value[1]).show();
+            }
+            else{
+                $(value[1]).hide();
+            }
+        });
+
+      });
+  
+  });
 </script>
 
 <!-- Phone number formatting -->

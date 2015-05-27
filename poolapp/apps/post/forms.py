@@ -11,6 +11,9 @@ class TourneyForm(ModelForm):
       'state',
       'pool_hall',
       'game',
+      'game_other',
+      'tourney_format_other',
+      'field_size_other',
       'field_size',
       'date',
       'fee',
@@ -27,6 +30,15 @@ class TourneyForm(ModelForm):
     widgets = {
             'title': forms.TextInput(attrs={'placeholder':'My Awesome Tournament'}),
             'pool_hall': forms.TextInput(attrs={'placeholder':'My Awesome Pool Hall'}),
+            'game_other': forms.TextInput(attrs={
+                'placeholder':'Another game type'
+              }),
+            'tourney_format_other': forms.TextInput(attrs={
+                'placeholder':'Another format'
+              }),
+            'field_size_other': forms.TextInput(attrs={
+                'placeholder':'Another field size'
+              }),
             'fee': forms.TextInput(attrs={'placeholder':'$20'}),
             'added_money': forms.TextInput(attrs={'placeholder':'$2,000'}),
             'date': forms.TextInput(attrs={

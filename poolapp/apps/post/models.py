@@ -32,12 +32,14 @@ class Tourney(models.Model):
   SIXT_P = 2
   THIR_P = 3
   SIXT_P = 4
+  OTHER_P = 5
   FIELD_SIZE_CHOICES = (
       (TWO_P, '2 man'),
       (FOUR_P, '4 players'),
       (SIXT_P, '16 players'),
       (THIR_P, '32 players'),
-      (SIXT_P, '64 players')
+      (SIXT_P, '64 players'),
+      (OTHER_P, 'Other')
     )
 
   # Tourney Format
@@ -56,15 +58,29 @@ class Tourney(models.Model):
   # TODO: add cities
   # TODO: add sub-city regions
   pool_hall = models.CharField(max_length=200, verbose_name="Location")
+
   game = models.IntegerField(choices=GAME_CHOICES, default=EIGHT_BALL)
+  # Only populated if choice is 'Other' -- choice 6
+  game_other = models.CharField(max_length=200, verbose_name="Other Game",
+      blank=True, null=True)
+
   field_size = models.IntegerField(choices=FIELD_SIZE_CHOICES,
       default=THIR_P)
+  # Only populated if choice is 'Other' -- choice 6
+  field_size_other = models.CharField(max_length=200, 
+      verbose_name="Other Field Size", blank=True, null=True)
+
   date = models.DateField('Tournament Date')
   fee = models.DecimalField(max_digits=6, decimal_places=2, 
       verbose_name="Entry Fee")
   added_money = models.DecimalField(max_digits=6, decimal_places=2)
+
   tourney_format = models.IntegerField(choices=TOURNEY_FORMAT_CHOICES, 
       default=SINGLE)
+  # Only populated if the choice is 'Other' -- choice 6
+  tourney_format_other = models.CharField(max_length=200, verbose_name="Other Format",
+      blank=True, null=True)
+
   contact_name = models.CharField(max_length=200)
 
   phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', 

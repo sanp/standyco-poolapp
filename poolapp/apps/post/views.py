@@ -19,6 +19,7 @@ def tourney_form_upload(request):
       state = form.cleaned_data['state']
       pool_hall = form.cleaned_data['pool_hall']
       game = form.cleaned_data['game']
+      game_other = form.cleaned_data['game_other']
       field_size = form.cleaned_data['field_size']
       date = form.cleaned_data['date']
       fee = form.cleaned_data['fee']
@@ -36,6 +37,7 @@ def tourney_form_upload(request):
                   state = state,
                   pool_hall = pool_hall,
                   game = game,
+                  game_other = game_other,
                   field_size = field_size,
                   date = date,
                   fee = fee,
