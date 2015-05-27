@@ -247,6 +247,6 @@ p, span, li, label {
 }
 
 /* Hide 'Other' text boxes by default */
-.other_txt_box {
+.optional_txt_box {
     display: none;
 }

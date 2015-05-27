@@ -16,24 +16,32 @@ class TourneyForm(ModelForm):
       'field_size_other',
       'field_size',
       'date',
+      'end_date',
+      'multiple_days',
       'fee',
       'added_money',
+      'added_money_based_on_full_field',
       'tourney_format',
       'contact_name',
       'contact_phone',
       'contact_email',
       'start_time',
-      'end_time',
       'title',
       'has_calcutta',
       'race_to_single',
       'race_to_a',
       'race_to_b',
+      'green_fees_included',
+      'green_fees',
       'adtnl_info'
     )
     widgets = {
             'title': forms.TextInput(attrs={'placeholder':'My Awesome Tournament'}),
             'has_calcutta': forms.RadioSelect,
+            'multiple_days': forms.RadioSelect,
+            'added_money_based_on_full_field': forms.RadioSelect,
+            'green_fees_included': forms.RadioSelect,
+            'green_fees': forms.TextInput(attrs={'placeholder':'$20'}),
             'race_to_single': forms.TextInput(attrs={'placeholder':'5'}),
             'race_to_a': forms.TextInput(attrs={'placeholder':'5'}),
             'race_to_b': forms.TextInput(attrs={'placeholder':'3'}),
@@ -53,12 +61,11 @@ class TourneyForm(ModelForm):
                 'class':'datepicker',
                 'placeholder': 'mm/dd/yyyy'
               }),
-            'start_time': forms.TextInput(attrs={
-                'class':'timepicker', 
-                'autocomplete':'off',
-                'placeholder': 'hh:mm'
+            'end_date': forms.TextInput(attrs={
+                'class':'datepicker',
+                'placeholder': 'mm/dd/yyyy'
               }),
-            'end_time': forms.TextInput(attrs={
+            'start_time': forms.TextInput(attrs={
                 'class':'timepicker', 
                 'autocomplete':'off',
                 'placeholder': 'hh:mm'

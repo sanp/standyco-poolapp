@@ -73,10 +73,13 @@ class Tourney(models.Model):
   field_size_other = models.CharField(max_length=200, 
       verbose_name="Other Field Size", blank=True, null=True)
 
-  date = models.DateField('Tournament Date')
+  date = models.DateField(verbose_name='Tournament Date')
+  end_date = models.DateField(blank=True, null=True, verbose_name='End Date')
   fee = models.DecimalField(max_digits=6, decimal_places=2, 
       verbose_name="Entry Fee")
   added_money = models.DecimalField(max_digits=6, decimal_places=2)
+  added_money_based_on_full_field = models.BooleanField(choices=BOOL_CHOICES,
+      default=True)
 
   tourney_format = models.IntegerField(choices=TOURNEY_FORMAT_CHOICES, 
       default=SINGLE)
@@ -92,6 +95,9 @@ class Tourney(models.Model):
       verbose_name="Race to on B-Side")
 
   has_calcutta = models.BooleanField(choices=BOOL_CHOICES, default=False)
+  green_fees_included = models.BooleanField(choices=BOOL_CHOICES, default=True)
+  green_fees = models.IntegerField(blank=True, null=True, 
+      verbose_name="Green Fees")
 
   contact_name = models.CharField(max_length=200)
 
@@ -102,7 +108,7 @@ class Tourney(models.Model):
 
   contact_email = models.EmailField(max_length=100)
   start_time = models.TimeField('Start time', blank=False)
-  end_time = models.TimeField('End time', blank=True, null=True) # End time optional
+  multiple_days = models.BooleanField(choices=BOOL_CHOICES, default=False)
   title = models.CharField(max_length=70)
   adtnl_info = models.CharField(max_length=1000, blank=True, null=True)
 

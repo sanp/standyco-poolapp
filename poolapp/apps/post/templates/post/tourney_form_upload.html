@@ -133,7 +133,7 @@
                   </label>
                 </div>
 
-                <div id="other_game" class="other_txt_box large-6 medium-6 columns">
+                <div id="other_game" class="optional_txt_box large-6 medium-6 columns">
                   <label>Other Game Type
                     {{ form.game_other }}
                   </label>
@@ -149,7 +149,7 @@
                   </label>
                 </div>
 
-                <div id="other_field_size" class="other_txt_box large-6 medium-6 columns">
+                <div id="other_field_size" class="optional_txt_box large-6 medium-6 columns">
                   <label>Other Field size
                     {{ form.field_size_other }}
                   </label>
@@ -165,7 +165,7 @@
                   </label>
                 </div>
 
-                <div id="other_tourney_format" class="other_txt_box large-6 medium-6 columns">
+                <div id="other_tourney_format" class="optional_txt_box large-6 medium-6 columns">
                   <label>Other Format
                     {{ form.tourney_format_other }}
                   </label>
@@ -233,18 +233,42 @@
                   </label>
                 </div>
               </div>
+
+              <div class="row">
+
+                <div class="required large-6 medium-6 columns">
+                  <label class="required_label">Green Fees Included
+                    {{ form.green_fees_included }}
+                  </label>
+                </div>
+
+                <div id="optional_green_fees" class="optional_txt_box large-6 medium-6 columns">
+                  <label class=optional_txt_box">Green Fees
+                    {{ form.green_fees }}
+                  </label>
+                </div>
+
+              </div>
     
               <div class="row">
-                <!-- Select box -->
                 <div class="required large-12 medium-12 columns">
                   <label class="required_label">Added money
                     {{ form.added_money }}
                   </label>
                 </div>
               </div>
-    
+
+
+              <div class="row">
+                <div class="required large-12 medium-12 columns">
+                  <label class="required_label">Based on a full field
+                    {{ form.added_money_based_on_full_field }}
+                  </label>
+                </div>
+              </div>
+
             </div>
-    
+
           </div>
           <!-- End of Money section -->
     
@@ -262,28 +286,36 @@
             <div class="form-group">
     
               <div class="row">
-                <!-- Select box -->
                 <div class="required large-12 medium-12 columns">
                   <label class="required_label">Date
                     {{ form.date }}
                   </label>
                 </div>
               </div>
+
+              <div class="row">
+
+                <div class="required large-6 medium-6 columns">
+                  <label class="required_label">Multiple days
+                    {{ form.multiple_days }}
+                  </label>
+                </div>
+
+                <div id="optional_end_date" class="optional_txt_box large-6 medium-6 columns">
+                  <label class=optional_txt_box">End Date
+                    {{ form.end_date }}
+                  </label>
+                </div>
+
+              </div>
+
+
     
               <div class="row">
                 <!-- Select box -->
                 <div class="required large-12 medium-12 columns">
                   <label class="required_label">Start time
                     {{ form.start_time }}
-                  </label>
-                </div>
-              </div>
-    
-              <div class="row">
-                <!-- Select box -->
-                <div class="large-12 medium-12 columns">
-                  <label>End time
-                    {{ form.end_time }}
                   </label>
                 </div>
               </div>
@@ -492,7 +524,26 @@
               $('#race_to_row').show();
           }
       });
-  
+
+
+      // Green Fees hide/show options
+      $('input[name=green_fees_included]').click(function () {
+          if (this.id == "formtools_green_fees_included_0") {
+              $("#optional_green_fees").hide();
+          } else {
+              $("#optional_green_fees").show();
+          }
+      });
+
+      // End Date hide/show options
+      $('input[name=multiple_days]').click(function () {
+          if (this.id == "formtools_multiple_days_0") {
+              $("#optional_end_date").show();
+          } else {
+              $("#optional_end_date").hide();
+          }
+      });
+
   });
 </script>
 

@@ -22,19 +22,22 @@ def tourney_form_upload(request):
       game_other = form.cleaned_data['game_other']
       field_size = form.cleaned_data['field_size']
       date = form.cleaned_data['date']
+      end_date = form.cleaned_data['end_date']
       fee = form.cleaned_data['fee']
       added_money = form.cleaned_data['added_money']
+      added_money_based_on_full_field = form.cleaned_data['added_money_based_on_full_field']
       tourney_format = form.cleaned_data['tourney_format']
       contact_name = form.cleaned_data['contact_name']
       contact_phone = form.cleaned_data['contact_phone']
       contact_email = form.cleaned_data['contact_email']
       start_time = form.cleaned_data['start_time']
-      end_time = form.cleaned_data['end_time']
       title = form.cleaned_data['title']
       has_calcutta = form.cleaned_data['has_calcutta']
       race_to_single = form.cleaned_data['race_to_single']
       race_to_a = form.cleaned_data['race_to_a']
       race_to_b = form.cleaned_data['race_to_b']
+      green_fees_included = form.cleaned_data['green_fees_included']
+      green_fees = form.cleaned_data['green_fees']
       adtnl_info = form.cleaned_data['adtnl_info']
 
       tourney = Tourney.objects.create(
@@ -44,6 +47,7 @@ def tourney_form_upload(request):
                   game_other = game_other,
                   field_size = field_size,
                   date = date,
+                  end_date = end_date,
                   fee = fee,
                   added_money = added_money,
                   tourney_format = tourney_format,
@@ -51,12 +55,15 @@ def tourney_form_upload(request):
                   contact_phone = contact_phone,
                   contact_email = contact_email,
                   start_time = start_time,
-                  end_time = end_time,
                   title = title,
                   has_calcutta = has_calcutta,
                   race_to_single = race_to_single,
                   race_to_a = race_to_a,
                   race_to_b = race_to_b,
+                  green_fees_included = green_fees_included,
+                  green_fees = green_fees,
+                  added_money_based_on_full_field = 
+                    added_money_based_on_full_field,
                   adtnl_info = adtnl_info,
                 )
 
