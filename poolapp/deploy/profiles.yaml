@@ -34,5 +34,7 @@ development:
 staging:
   <<: *defaults
 
+  debug: True
+
 production:
   <<: *defaults
