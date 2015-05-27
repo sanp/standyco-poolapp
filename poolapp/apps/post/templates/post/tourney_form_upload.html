@@ -173,6 +173,32 @@
 
               </div>
 
+              <div id="race_to_row" class="row">
+
+                <div class="required large-6 medium-6 columns">
+                  <label class="required_label">Race To
+                    {{ form.race_to_single }}
+                  </label>
+                </div>
+
+              </div>
+
+              <div id="race_to_double_row" class="row">
+
+                <div class="required large-6 medium-6 columns">
+                  <label class="required_label">Race To on A-Side
+                    {{ form.race_to_a }}
+                  </label>
+                </div>
+
+                <div class="required large-6 medium-6 columns">
+                  <label class="required_label">Race To on B-Side
+                    {{ form.race_to_b }}
+                  </label>
+                </div>
+
+              </div>
+
               <div class="row">
                 <div class="required large-6 medium-6 columns">
                   <label class="required_label">Calcutta
@@ -414,6 +440,7 @@
 <script type='text/javascript'>
   $(document).ready(function() {
 
+      // Other hide/show options
       var elements = {
         // key = formtools div id for dropdown element
         // value[0] = other option number, from models.py
@@ -443,6 +470,27 @@
             }
         });
 
+      });
+
+      // Race to hide/show options
+      // See models.py -- 0 is single elimination. 1 is double. 2 is other.
+      if($('#formtools_tourney_format').val() == 1){
+          $('#race_to_double_row').show();
+          $('#race_to_row').hide();
+      }
+      else{
+          $('#race_to_double_row').hide();
+          $('#race_to_row').show();
+      }
+      $('#formtools_tourney_format').change(function() {
+          if($(this).val() == 1){
+              $('#race_to_double_row').show();
+              $('#race_to_row').hide();
+          }
+          else{
+              $('#race_to_double_row').hide();
+              $('#race_to_row').show();
+          }
       });
   
   });

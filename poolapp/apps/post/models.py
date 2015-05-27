@@ -84,6 +84,13 @@ class Tourney(models.Model):
   tourney_format_other = models.CharField(max_length=200, verbose_name="Other Format",
       blank=True, null=True)
 
+  race_to_single = models.IntegerField(blank=True, null=True, 
+      verbose_name="Race to")
+  race_to_a = models.IntegerField(blank=True, null=True, 
+      verbose_name="Race to on A-Side")
+  race_to_b = models.IntegerField(blank=True, null=True, 
+      verbose_name="Race to on B-Side")
+
   has_calcutta = models.BooleanField(choices=BOOL_CHOICES, default=False)
 
   contact_name = models.CharField(max_length=200)
