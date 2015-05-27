@@ -25,10 +25,12 @@ class TourneyForm(ModelForm):
       'start_time',
       'end_time',
       'title',
+      'has_calcutta',
       'adtnl_info'
     )
     widgets = {
             'title': forms.TextInput(attrs={'placeholder':'My Awesome Tournament'}),
+            'has_calcutta': forms.RadioSelect,
             'pool_hall': forms.TextInput(attrs={'placeholder':'My Awesome Pool Hall'}),
             'game_other': forms.TextInput(attrs={
                 'placeholder':'Another game type'

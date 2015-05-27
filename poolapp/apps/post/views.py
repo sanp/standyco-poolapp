@@ -31,6 +31,7 @@ def tourney_form_upload(request):
       start_time = form.cleaned_data['start_time']
       end_time = form.cleaned_data['end_time']
       title = form.cleaned_data['title']
+      has_calcutta = form.cleaned_data['has_calcutta']
       adtnl_info = form.cleaned_data['adtnl_info']
 
       tourney = Tourney.objects.create(
@@ -49,6 +50,7 @@ def tourney_form_upload(request):
                   start_time = start_time,
                   end_time = end_time,
                   title = title,
+                  has_calcutta = has_calcutta,
                   adtnl_info = adtnl_info,
                 )
 

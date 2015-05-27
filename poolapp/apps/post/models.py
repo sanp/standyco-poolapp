@@ -52,6 +52,9 @@ class Tourney(models.Model):
       (OTHER_FORMAT, 'Other')
     )
 
+  # For yes/no selections
+  BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
+
   # Fields
   tourney_id = models.AutoField(primary_key=True)
   state = USStateField(choices=STATE_CHOICES, default='IL')
@@ -80,6 +83,8 @@ class Tourney(models.Model):
   # Only populated if the choice is 'Other' -- choice 6
   tourney_format_other = models.CharField(max_length=200, verbose_name="Other Format",
       blank=True, null=True)
+
+  has_calcutta = models.BooleanField(choices=BOOL_CHOICES, default=False)
 
   contact_name = models.CharField(max_length=200)
 
