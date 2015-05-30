@@ -68,7 +68,13 @@ def commit_environment_yaml(environment_name):
   environment.yaml file when deploying.
   """
   print(yellow('Committing changes to environment.yaml file...', bold=True))
+  # The requirements files and the environment.yaml files are sometimes
+  # automatically changed by this fabfile script, so add them before commit just
+  # in case.  All other files should not be automatically added/committed on a
+  # deploy -- I want to manyally add/commit those because i want to know what
+  # I'm committing.
   local('git add poolapp/deploy/environment.yaml')
+  local('git add poolapp/requirements/*')
   # Fab will throw an error if you try to commit a repo with no new changes, so
   # wrap in a try-catch to avoid this.
   try:
