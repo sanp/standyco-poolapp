@@ -74,7 +74,7 @@ def commit_environment_yaml(environment_name):
   # deploy -- I want to manyally add/commit those because i want to know what
   # I'm committing.
   local('git add poolapp/deploy/environment.yaml')
-  local('git add poolapp/requirements/*')
+  local('git add requirements/*')
   # Fab will throw an error if you try to commit a repo with no new changes, so
   # wrap in a try-catch to avoid this.
   try:
