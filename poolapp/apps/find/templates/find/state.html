@@ -36,7 +36,8 @@
         <div class="large-10 columns">
             <p>
             <a href="{{ tourney.tourney_id }}/"><strong>{{ tourney.title|title }}</strong></a><br />
-            {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }} tournament on {{ tourney.date }}.<br />
+            {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }} tournament on 
+            {{ tourney.start_date }}.<br />
             <!-- Must load humanize to use intcomma -->
             Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}<br />
             Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />

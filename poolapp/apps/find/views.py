@@ -16,7 +16,7 @@ def index(request):
   return render(request, 'find/index.html', context)
 
 def state(request, state_id):
-  tourney_list = Tourney.objects.filter(state=state_id).order_by('date')
+  tourney_list = Tourney.objects.filter(state=state_id).order_by('start_date')
   tourney_list.state_name = state_id
   # Add formatting to contact phone
   for tourney in tourney_list:
