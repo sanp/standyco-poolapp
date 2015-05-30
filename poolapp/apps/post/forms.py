@@ -9,13 +9,14 @@ class TourneyForm(ModelForm):
     model = Tourney
     fields = (
       'state',
+      'city',
       'pool_hall',
       'game',
       'game_other',
       'tourney_format_other',
       'field_size_other',
       'field_size',
-      'date',
+      'start_date',
       'end_date',
       'multiple_days',
       'fee',
@@ -37,6 +38,7 @@ class TourneyForm(ModelForm):
     )
     widgets = {
             'title': forms.TextInput(attrs={'placeholder':'My Awesome Tournament'}),
+            'city': forms.TextInput(attrs={'placeholder':'Your city'}),
             'has_calcutta': forms.RadioSelect,
             'multiple_days': forms.RadioSelect,
             'added_money_based_on_full_field': forms.RadioSelect,
@@ -57,7 +59,7 @@ class TourneyForm(ModelForm):
               }),
             'fee': forms.TextInput(attrs={'placeholder':'$20'}),
             'added_money': forms.TextInput(attrs={'placeholder':'$2,000'}),
-            'date': forms.TextInput(attrs={
+            'start_date': forms.TextInput(attrs={
                 'class':'datepicker',
                 'placeholder': 'mm/dd/yyyy'
               }),

@@ -58,7 +58,9 @@ class Tourney(models.Model):
   # Fields
   tourney_id = models.AutoField(primary_key=True)
   state = USStateField(choices=STATE_CHOICES, default='IL')
-  # TODO: add cities
+  # TODO: for now, cities is a write in text box -- make it a drop down which
+  # takes its values conditional upon state.
+  city = models.CharField(max_length=200, verbose_name="City")
   # TODO: add sub-city regions
   pool_hall = models.CharField(max_length=200, verbose_name="Location")
 
@@ -73,7 +75,7 @@ class Tourney(models.Model):
   field_size_other = models.CharField(max_length=200, 
       verbose_name="Other Field Size", blank=True, null=True)
 
-  date = models.DateField(verbose_name='Tournament Date')
+  start_date = models.DateField(verbose_name='Start Date')
   end_date = models.DateField(blank=True, null=True, verbose_name='End Date')
   fee = models.DecimalField(max_digits=6, decimal_places=2, 
       verbose_name="Entry Fee")

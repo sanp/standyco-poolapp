@@ -17,11 +17,12 @@ def tourney_form_upload(request):
     if form.is_valid():
 
       state = form.cleaned_data['state']
+      city = form.cleaned_data['city']
       pool_hall = form.cleaned_data['pool_hall']
       game = form.cleaned_data['game']
       game_other = form.cleaned_data['game_other']
       field_size = form.cleaned_data['field_size']
-      date = form.cleaned_data['date']
+      start_date = form.cleaned_data['start_date']
       end_date = form.cleaned_data['end_date']
       fee = form.cleaned_data['fee']
       added_money = form.cleaned_data['added_money']
@@ -42,11 +43,12 @@ def tourney_form_upload(request):
 
       tourney = Tourney.objects.create(
                   state = state,
+                  city = city,
                   pool_hall = pool_hall,
                   game = game,
                   game_other = game_other,
                   field_size = field_size,
-                  date = date,
+                  start_date = start_date,
                   end_date = end_date,
                   fee = fee,
                   added_money = added_money,
