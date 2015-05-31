@@ -128,9 +128,19 @@ Post a tournament
         {% endfor %}
         <input type="hidden" name="{{ stage_field }}" value="2" />
         <input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
-        <button type="submit" class="button radius">Submit your post</button>
+
+        <div class="large-6 medium-6 columns">
+          <button type="submit" class="button radius expand">Submit your post</button>
+        </div>
+        <div class="large-6 medium-6 large-right medium-right columns">
+          <a href="javascript:history.go(-1)" class="button radius expand">
+            Go back and edit your post
+          </a>
+        </div>
+
       </form>
     </div>
+
 
   </div>
 </div>
@@ -138,25 +148,26 @@ Post a tournament
 
 
 <!-- Edit again section -->
-<div class="edit-again-section">
-  <div class="large-12 medium-12 columns">
 
-    <div class="section-title row">
-      <p>Or edit it again</p>
-    </div>
-
-    <div class="panel">
-      <div class="row">
-        <form action="" method="post">{% csrf_token %}
-          {% csrf_token %}
-          {{ form.as_p }}
-          <input type="hidden" name="{{ stage_field }}" value="1" />
-          <button type="submit" class="button radius expand">Preview your post</button>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
+<!-- <div class="edit-again-section"> -->
+<!--   <div class="large-12 medium-12 columns"> -->
+<!--  -->
+<!--     <div class="section-title row"> -->
+<!--       <p>Or edit it again</p> -->
+<!--     </div> -->
+<!--  -->
+<!--     <div class="panel"> -->
+<!--       <div class="row"> -->
+<!--         <form action="" method="post">{% csrf_token %} -->
+<!--           {% csrf_token %} -->
+<!--           {{ form.as_p }} -->
+<!--           <input type="hidden" name="{{ stage_field }}" value="1" /> -->
+<!--           <button type="submit" class="button radius expand">Refresh the Preview</button> -->
+<!--         </form> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--  -->
+<!--   </div> -->
+<!-- </div> -->
 
 {% endblock content-body %}
