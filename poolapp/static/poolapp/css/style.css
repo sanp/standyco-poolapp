@@ -269,3 +269,8 @@ p, span, li, label {
 .body-content {
     margin-top: 20px;
 }
+
+.general-error-msg p {
+    color: red;
+    font-weight: 500;
+}

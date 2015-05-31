@@ -1,77 +1,71 @@
-{% extends "base.html" %}
+{% extends "find_base.html" %}
 {% load humanize %}
 
 {# HTMLDjango does indexing with a dot, not brackets #}
 {# week_list.0.week returns the week attribute from the first member of week_list #}
 
-{% block content %}
 
-<div class="row">
-    <div class="large-12 columns">
-        <h1>Find a tournament</h1>
-    </div>
-</div>
-
+{% block breadcrumbs %}
 <!-- Breadcrumbs -->
 <div class="row">
-    <div class="small-12 large-12 columns">
-        <ul class="breadcrumbs">
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'poolapp.apps.find.views.index' %}">Find</a></li>
-            <li class="unavailable"><a href="#">State</a></li>
-            <li><a href="{% url 'poolapp.apps.find.views.index' %}state/{{ tourney.state }}">{{ tourney.state }}</a></li>
-            <li class="current"><a href="#">{{ tourney.title }}</a></li>
-        </ul>
-    </div>
+  <div class="small-12 large-12 columns">
+    <ul class="breadcrumbs">
+      <li><a href="/">Home</a></li>
+      <li><a href="{% url 'poolapp.apps.find.views.index' %}">Find</a></li>
+      <li class="unavailable"><a href="#">State</a></li>
+      <li><a href="{% url 'poolapp.apps.find.views.index' %}state/{{ tourney.state }}">{{ tourney.state }}</a></li>
+      <li class="current"><a href="#">{{ tourney.title }}</a></li>
+    </ul>
+  </div>
 </div>
+{% endblock breadcrumbs %}
 
 
-{% if tourney %}
-    <!-- Tournament Info -->
-    <div class="small-12 large-12 columns" align="center">
-        <td>
-          <table style="width: 80%;">
-            <!-- |title filter converts text field into 'title case' - cap first -->
-            <!-- word of every line -->
-            <tr><td><h1>{{ tourney.title|title }}</h1></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr>
-                <td>
-                    {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }}
-                    tournament on {{ tourney.start_date|date:"l, F d, Y" }}.
-                </td>
-            </tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td>Entry Fee: ${{ tourney.fee|intcomma }}.</td></tr>
-            <tr><td>Added Money: ${{ tourney.added_money|intcomma }} 
-                    (based on a full field).</td></tr>
-            <tr><td>
-                Format: {{ tourney.get_tourney_format_display }}
-            </td></tr>
-            <tr><td>Start time: {{ tourney.start_time }}</td></tr>
-            {% if tourney.end_time %}
-                <tr><td>End time: {{ tourney.end_time }}</td></tr>
-            {% endif %}
-            <tr><td>Contact: {{ tourney.contact_name|title }} at
-                {{ tourney.formatted_contact_phone }}, or
-                {{ tourney.contact_email }}.
-            </td></tr>
+{% block body %}
 
-            <tr><td></td></tr>
-            <tr><td></td></tr>
+<div class="row">
+  
+  {% if tourney %}
+      <!-- Tournament Info -->
+      <div class="large-12 medium-12 columns">
+
+        <div class="section-title row">
+          <div class="large-12 medium-12 columns">
+            <!-- |title filter converts text field into 'title case' -->
+            <!-- cap first word of every line -->
+            <p>{{ tourney.title|title }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 medium-12 columns">
+
+            {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }}
+            tournament on {{ tourney.start_date|date:"l, F d, Y" }}.
+            <br />
+            <!-- Must load humanize to use intcomma -->
+            Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}<br />
+            Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />
+            Format: {{ tourney.get_tourney_format_display }}<br />
+            Start Time: {{ tourney.start_time }}<br />
+            Contact: {{ tourney.contact_name|title }} at {{ tourney.formatted_contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
+            <br /><br />
+
             {% if tourney.adtnl_info %}
                 <tr><td>Additional Notes: {{ tourney.adtnl_info }}</td></tr>
             {% endif %}
 
-          </table>
-        </td>
-    </div>
+          </div>
+        </div>
 
-{% else %}
-    <p>No tournaments are available.</p>
+      </div>
 
-{% endif %}
+  {% else %}
+  <div class="general-error-msg large-12 medium-12 columns">
+    <p>Oops! Something went wrong. This tournament is not available.</p>
+  </div>
+  {% endif %}
 
-{% endblock %}
+</div>
+
+{% endblock body %}

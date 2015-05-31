@@ -18,40 +18,39 @@
 {% block body %}
 
 <div class="row">
-      
-    <!-- Tournament Info at a glance for each tournament -->
 
-    {% if tourney_list %}
+  <!-- Tournament Info at a glance for each tournament -->
 
-    {% for tourney in tourney_list %}
+  {% if tourney_list %}
 
-        <div class="large-2 columns small-3">
-            <img src="http://placehold.it/80x80&text=[img]"/>
-        </div>
-        <div class="large-10 columns">
-            <p>
-            <a href="{{ tourney.tourney_id }}/"><strong>{{ tourney.title|title }}</strong></a><br />
-            {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }} tournament on 
-            {{ tourney.start_date }}.<br />
-            <!-- Must load humanize to use intcomma -->
-            Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}<br />
-            Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />
-            Format: {{ tourney.get_tourney_format_display }}<br />
-            Start Time: {{ tourney.start_time }}<br />
-            Contact: {{ tourney.contact_name|title }} at {{ tourney.formatted_contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
-            </p>
-            <hr/>
-        </div>
+  {% for tourney in tourney_list %}
 
-    {% endfor %}
+  <div class="large-2 columns small-3">
+    <img src="http://placehold.it/80x80&text=[img]"/>
+  </div>
 
-    {% else %}
+  <div class="large-10 columns">
+    <p>
+      <a href="{{ tourney.tourney_id }}/"><strong>{{ tourney.title|title }}</strong></a><br />
+      {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }} tournament on 
+      {{ tourney.start_date }}.<br />
+      <!-- Must load humanize to use intcomma -->
+      Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}<br />
+      Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />
+      Format: {{ tourney.get_tourney_format_display }}<br />
+      Start Time: {{ tourney.start_time }}<br />
+      Contact: {{ tourney.contact_name|title }} at {{ tourney.formatted_contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
+    </p>
+    <hr/>
+  </div>
 
-        <div class="large-12 columns">
-            <h5>Oops! There are no tournaments to show!</h5>
-        </div>
+{% endfor %}
 
-    {% endif %}
+  {% else %}
+    <div class="general-error-msg large-12 medium-12 columns">
+      <p>Oops! No tournaments are available.</p>
+    </div>
+  {% endif %}
 
 </div>
      
