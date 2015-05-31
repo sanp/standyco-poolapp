@@ -1,39 +1,44 @@
 {% extends "find_base.html" %}
 
 {% block breadcrumbs %}
-<!-- Breadcrumbs -->
-<div class="row">
+  <div class="row">
     <div class="small-12 large-12 columns">
-        <ul class="breadcrumbs">
-            <li><a href="/">Home</a></li>
-            <li class="current"><a href="#">Find</a></li>
-        </ul>
+      <ul class="breadcrumbs">
+        <li><a href="/">Home</a></li>
+        <li class="current"><a href="#">Find</a></li>
+      </ul>
     </div>
-</div>
+  </div>
 {% endblock breadcrumbs %}
 
 {% block body %}
 
-{% if state_list %}
+    {% if state_list %}
 
-<div class="row">
-    <div class="small-12 large-12 columns" align="center">
-          <table>
-            <!-- |title filter converts text field into 'title case' - cap first -->
-            <!-- word of every line -->
-            <tr><td><b>Select your state</b></td></tr>
-            <tr><td>
-                {% for state in state_list %}
-                <!-- No slash before state otherwise the link will break -->
-                <center><a href="state/{{ state }}/">{{ state }}</a><br /></center>
-                {% endfor %}
-            </td></tr>
-          </table>
+    <div class="section-title row">
+      <div class="large-12 medium-12 columns">
+        <p>Select your state</p>
+      </div>
     </div>
-</div>
 
-{% else %}
-    <p>No tournaments are available.</p>
-{% endif %}
+    <div class="section-title row">
+      <div class="large-12 medium-12 columns">
+
+        {% for state in state_list %}
+          <!-- No slash before state otherwise the link will break -->
+          <a href="state/{{ state }}/">{{ state }}</a><br />
+        {% endfor %}
+
+      </div>
+    </div>
+
+    {% else %}
+      <div class="row">
+        <div class="large-12 medium-12 columns">
+          <p>No tournaments are available.</p>
+        </div>
+      </div>
+    {% endif %}
+
 
 {% endblock body %}

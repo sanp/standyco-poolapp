@@ -2,37 +2,34 @@
 
 {% block content %}
 
-<div class="row">
-  
-  <div class="large-12 medium-12 columns">
+  <div id="find-content" class="row">
+    
+    <div class="large-10 medium-10 columns">
 
-    <!-- Page title section open -->
-    <div class="page-title row">
+      <!-- Page title section open -->
+      <div class="page-title row">
         <div class="large-12 medium-12 columns">
-            {% block page_title %}
-            Find a tournament
-            {% endblock page_title %}
-            <hr/>
+          {% block page_title %}
+          Find a tournament
+          {% endblock page_title %}
+          <hr/>
         </div>
+      </div>
+      <!-- Page title section close -->
+
+
+      <!-- Breadcrumbs -->
+      {% block breadcrumbs %}
+      {% endblock breadcrumbs %}
+
+      <!-- Main find page content -->
+      <div class="body-content">
+      {% block body %}
+      {% endblock body %}
+      </div>
+
     </div>
 
-
-  {% block breadcrumbs %}
-  <!-- Breadcrumbs -->
-  <div class="row">
-      <div class="small-12 large-12 columns">
-          <ul class="breadcrumbs">
-              <li><a href="/">Home</a></li>
-              <li class="current"><a href="#">Find</a></li>
-          </ul>
-      </div>
   </div>
-  {% endblock breadcrumbs %}
-
-  {% block body %}
-
-  <!-- Content goes here -->
-
-  {% endblock body %}
 
 {% endblock content %}

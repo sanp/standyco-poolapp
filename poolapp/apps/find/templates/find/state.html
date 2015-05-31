@@ -1,27 +1,22 @@
-{% extends "base.html" %}
+{% extends "find_base.html" %}
 {% load humanize %}
 
-{% block content %}
-
-<div class="row">
-    <div class="large-12 columns">
-        <h1>Find a tournament</h1>
-    </div>
-</div>
-
+{% block breadcrumbs %}
 <!-- Breadcrumbs -->
 <div class="row">
-    <div class="small-12 large-12 columns">
-        <ul class="breadcrumbs">
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'poolapp.apps.find.views.index' %}">Find</a></li>
-            <li class="unavailable"><a href="#">State</a></li>
-            <li class="current"><a href="#">{{ tourney_list.state_name }}</a></li>
-        </ul>
-    </div>
+  <div class="small-12 large-12 columns">
+    <ul class="breadcrumbs">
+      <li><a href="/">Home</a></li>
+      <li><a href="{% url 'poolapp.apps.find.views.index' %}">Find</a></li>
+      <li class="unavailable"><a href="#">State</a></li>
+      <li class="current"><a href="#">{{ tourney_list.state_name }}</a></li>
+    </ul>
+  </div>
 </div>
+{% endblock breadcrumbs %}
 
- 
+{% block body %}
+
 <div class="row">
       
     <!-- Tournament Info at a glance for each tournament -->
@@ -60,4 +55,4 @@
 
 </div>
      
-{% endblock %}
+{% endblock body %}

@@ -160,7 +160,7 @@ footer p {
 }
 
 /* Form subsection titles */
-.form-section-title p {
+.section-title p {
     font-size: 22px;
     font-weight: 400;
     color: #000000;
@@ -258,4 +258,14 @@ p, span, li, label {
 /* Hide 'Other' text boxes by default */
 .optional_txt_box {
     display: none;
+}
+
+/* Main content of the find page */
+#find-content {
+    margin-left: 10%;
+}
+
+/* Main content of the page below top things like title and breadcrumbs */
+.body-content {
+    margin-top: 20px;
 }
