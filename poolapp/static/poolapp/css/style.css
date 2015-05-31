@@ -50,6 +50,11 @@ body {
     font-family: ff-clan-web-pro-wide;
 }
 
+/* Main content of the site -- everything under the top bar */
+#content {
+    margin-top: 2%;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -122,6 +127,10 @@ footer p {
 }
 
 /* Form stylings */
+
+.form-section {
+    margin: 0 0 20px 0;
+}
 
 /* Little *Required mark for required fields in forms */
 .form-section .form-section-required:before {

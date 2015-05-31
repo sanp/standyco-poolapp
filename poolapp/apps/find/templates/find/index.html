@@ -1,15 +1,6 @@
-{% extends "base.html" %}
+{% extends "find_base.html" %}
 
-{% block content %}
-
-<div class="row">
-    <div class="large-12 columns">
-        <h1>Find a tournament</h1>
-    </div>
-</div>
-
-{% if state_list %}
-
+{% block breadcrumbs %}
 <!-- Breadcrumbs -->
 <div class="row">
     <div class="small-12 large-12 columns">
@@ -19,6 +10,11 @@
         </ul>
     </div>
 </div>
+{% endblock breadcrumbs %}
+
+{% block body %}
+
+{% if state_list %}
 
 <div class="row">
     <div class="small-12 large-12 columns" align="center">
@@ -40,8 +36,4 @@
     <p>No tournaments are available.</p>
 {% endif %}
 
-<br><br>
-<br><br>
-<!-- {% load staticfiles %} -->
-<!-- <center><img src="{{STATIC_URL}}poolapp/img/bracket.jpg" alt="Tournament Bracket"></center> -->
-{% endblock %}
+{% endblock body %}
