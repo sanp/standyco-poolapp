@@ -119,9 +119,9 @@ Post a tournament
     <div class="row">
       <!-- The url should point to whatever is entered as the name in the URLconf file -->
       <!-- When the form is submitted, POST the result to the URL named -->
-      <!-- 'preview_submit_page - which will call the tourney_form_upload function in -->
+      <!-- 'tourney_form_upload' - which will call the tourney_form_upload function in -->
       <!-- views.py -->
-      <form action="{% url 'preview_submit_page' %}" method="post">
+      <form action="{% url 'tourney_form_upload' %}" method="post">
         {% csrf_token %}
         {% for field in form %}
         {{ field.as_hidden }}
@@ -133,7 +133,9 @@ Post a tournament
           <button type="submit" class="button radius expand">Submit your post</button>
         </div>
         <div class="large-6 medium-6 large-right medium-right columns">
-          <a href="javascript:history.go(-1)" class="button radius expand">
+          <a href="{% url 'tourney_form_upload' %}" 
+            onClick="history.go(-1);return false;" 
+            class="button radius expand">
             Go back and edit your post
           </a>
         </div>
