@@ -1,36 +1,20 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block page_title %}
+Forums
+{% endblock page_title %}
+
+{% block content-body %}
 
   <div class="row">
-    
-    <div class="large-10 medium-10 large-offset-1 medium-offset-1 columns">
+    <div class="large-12 medium-12 columns">
+      <p>Coming soon...</p>
 
-      <!-- Page title section open -->
-      <div class="page-title row">
-        <div class="large-12 medium-12 columns">
-          {% block page_title %}
-          Forums
-          {% endblock page_title %}
-          <hr/>
-        </div>
-      </div>
-      <!-- Page title section close -->
-
-      <div class="row">
-        <div class="large-12 medium-12 columns">
-          <p>Coming soon...</p>
-
-          <img width="100%" data-interchange="[{{STATIC_URL}}poolapp/img/forum.jpg, (default)], 
-            [{{STATIC_URL}}poolapp/img/forum.jpg, (large)]">
-          <noscript><img width="100%" src="{{STATIC_URL}}poolapp/img/forum.jpg"></noscript>
-
-        </div>
-      </div>
-      
+      <img width="100%" data-interchange="[{{STATIC_URL}}poolapp/img/forum.jpg, (default)], 
+        [{{STATIC_URL}}poolapp/img/forum.jpg, (large)]">
+      <noscript><img width="100%" src="{{STATIC_URL}}poolapp/img/forum.jpg"></noscript>
 
     </div>
-
   </div>
 
-{% endblock content %}
+{% endblock content-body %}

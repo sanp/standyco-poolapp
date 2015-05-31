@@ -1,40 +1,160 @@
 {% extends "base.html" %}
+{% load humanize %}
 
-{% block content %}
+{% block page_title %}
+Post a tournament
+{% endblock page_title %}
 
-<h1>Preview your submission</h1>
+{% block content-body %}
 
-<table>
-{% for field in form %}
-<tr>
-<th>{{ field.label }}:</th>
-<td>{{ field.data }}</td>
-</tr>
-{% endfor %}
-</table>
+<!-- Preview section -->
+<div class="preview-section">
+  <div class="large-12 medium-12 columns">
 
-<!-- The url should point to whatever is entered as the name in the URLconf file -->
-<!-- When the form is submitted, POST the result to the URL named -->
-<!-- 'preview_submit_page - which will call the tourney_form_upload function in -->
-<!-- views.py -->
-<form action="{% url 'preview_submit_page' %}" method="post">
-{% csrf_token %}
-{% for field in form %}{{ field.as_hidden }}
-{% endfor %}
-<input type="hidden" name="{{ stage_field }}" value="2" />
-<input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
-<p><input type="submit" value="Submit" /></p>
-</form>
+    <div class="section-title row">
+      <p>Preview your submission</p>
+    </div>
 
-<h1>Or edit it again</h1>
+    <div class="panel">
+      <div class="row">
+        <!-- Preview tournament details - TODO: include this don't just copy -->
+        <!-- code twice -->
 
-<form action="" method="post">{% csrf_token %}
-{% csrf_token %}
-<table>
-{{ form }}
-</table>
-<input type="hidden" name="{{ stage_field }}" value="1" />
-<p><input type="submit" value="Preview" /></p>
-</form>
+        <div class="large-12 medium-12 columns">
 
-{% endblock %}
+          <div class="title-block-section">
+            <div class="large-12 medium-12 columns">
+
+              <div class="section-title row">
+                <p>{{ form.data.title|title }}</p>
+              </div>
+
+              <div class="section-subtitle row">
+                <p>{{ form.data.city }}, {{ form.data.state }}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 medium-12 columns">
+
+              <!-- Lead line -->
+              <p>
+              {{ form.data.pool_hall|title }} will be hosting a 
+
+              {% if form.data.game_other %}
+                {{ form.data.game_other }}
+              {% else %}
+                {{ form.data.get_game_display }}
+              {% endif %}
+
+              tournament on {{ form.data.start_date|date:"l, F d, Y" }}.
+              </p>
+
+              <p>
+              <!-- Must load humanize to use intcomma -->
+              Entry Fee: ${{ form.data.fee|floatformat:"0"|intcomma }}
+              {% if form.data.green_fees_included %}
+                (green fees included)
+              {% elif form.data.green_fees|floatformat:"0"|intcomma %}
+                (plus ${{ form.data.green_fees }} for green fees)
+              {% else %}
+                (not including green fees)
+              {% endif %}
+              <br />
+
+              Added Money: ${{ form.data.added_money|floatformat:"0"|intcomma }} 
+              {% if form.data.added_money_based_on_full_field %}
+                (based on a full field)
+              {% endif %}
+              <br />
+              Format: 
+              {% if form.data.tourney_format_other %}
+                {{ form.data.tourney_format_other }}
+              {% else %}
+                {{ form.data.get_tourney_format_display }}
+              {% endif %}
+              <br />
+
+              {% if form.data.race_to_single %}
+                Race to: {{ form.data.race_to_single }}
+              {% elif form.data.race_to_a and form.data.race_to_b %}
+                Race to: {{ form.data.race_to_a }} on the A-side, and 
+                Race to: {{ form.data.race_to_b }} on the B-side.
+              {% endif %}
+              <br />
+
+              Start Date: {{ form.data.start_date }}<br />
+              {% if form.data.end_date %}
+                End Date: {{ form.data.end_date }}<br />
+              {% endif %}
+              Start Time: {{ form.data.start_time }}<br />
+              {% if form.data.has_calcutta %}
+                This tournament will have a calcutta.
+              {% endif %}
+              </p>
+
+              <p>
+              For more info, contact: {{ form.data.contact_name|title }} 
+              at {{ form.data.formatted_contact_phone }} 
+              or <a href="mailto:{{ form.data.contact_email }}?Subject={{ form.data.title|title }}%20Tournament" target="_top">{{ form.data.contact_email }}</a>.
+            </p>
+
+            <p>
+            {% if form.data.adtnl_info %}
+            <tr><td>Additional Notes: {{ form.data.adtnl_info|capfirst }}</td></tr>
+            {% endif %}
+            </p>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- End Preview tournament details -->
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- The url should point to whatever is entered as the name in the URLconf file -->
+      <!-- When the form is submitted, POST the result to the URL named -->
+      <!-- 'preview_submit_page - which will call the tourney_form_upload function in -->
+      <!-- views.py -->
+      <form action="{% url 'preview_submit_page' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field.as_hidden }}
+        {% endfor %}
+        <input type="hidden" name="{{ stage_field }}" value="2" />
+        <input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
+        <button type="submit" class="button radius">Submit your post</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Edit again section -->
+<div class="edit-again-section">
+  <div class="large-6 medium-6 large-centered medium-centered columns">
+
+    <div class="section-title row">
+      <p>Or edit it again</p>
+    </div>
+
+    <div class="row">
+      <form action="" method="post">{% csrf_token %}
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="{{ stage_field }}" value="1" />
+        <button type="submit" class="button radius expand">Preview your post</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content-body %}

@@ -1,35 +1,19 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block page_title %}
+Find a tournament
+{% endblock page_title %}
 
-  <div class="row">
-    
-    <div class="large-10 medium-10 large-offset-1 medium-offset-1 columns">
+{% block content-body %}
 
-      <!-- Page title section open -->
-      <div class="page-title row">
-        <div class="large-12 medium-12 columns">
-          {% block page_title %}
-          Find a tournament
-          {% endblock page_title %}
-          <hr/>
-        </div>
-      </div>
-      <!-- Page title section close -->
+  <!-- Breadcrumbs -->
+  {% block breadcrumbs %}
+  {% endblock breadcrumbs %}
 
-
-      <!-- Breadcrumbs -->
-      {% block breadcrumbs %}
-      {% endblock breadcrumbs %}
-
-      <!-- Main find page content -->
-      <div class="body-content">
-      {% block body %}
-      {% endblock body %}
-      </div>
-
-    </div>
-
+  <!-- Main find page content -->
+  <div class="body-content">
+  {% block body %}
+  {% endblock body %}
   </div>
 
-{% endblock content %}
+{% endblock content-body %}

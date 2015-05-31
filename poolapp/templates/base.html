@@ -18,7 +18,7 @@
     <script src="{% static 'poolapp/js/foundation-5.5.2/js/vendor/modernizr.js' %}"></script>
 
     {% block javascript %}
-    {% endblock %}
+    {% endblock javascript %}
 
 </head>
 
@@ -58,7 +58,43 @@
     </nav>
 
     <div id="content">
-        {% block content %}{% endblock content %}
+
+      {% if override_block_content %}
+
+        {% block content %}
+        {% endblock content %}
+
+      {% else %}
+
+        <div class="row">
+          
+          <div class="large-10 medium-10 large-offset-1 medium-offset-1 columns">
+
+            <!-- Page title section open -->
+            <div class="page-title row">
+              <div class="large-12 medium-12 columns">
+                {% block page_title %}
+                Page title here
+                {% endblock page_title %}
+                <hr/>
+              </div>
+            </div>
+            <!-- Page title section close -->
+
+            <div class="row">
+              <div class="large-12 medium-12 columns">
+                {% block content-body %}
+                  <p>Body content here...</p>
+                {% endblock content-body %}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+    {% endif %}
+        
     </div>
 
 
