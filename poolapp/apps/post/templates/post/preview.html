@@ -139,19 +139,21 @@ Post a tournament
 
 <!-- Edit again section -->
 <div class="edit-again-section">
-  <div class="large-6 medium-6 large-centered medium-centered columns">
+  <div class="large-12 medium-12 columns">
 
     <div class="section-title row">
       <p>Or edit it again</p>
     </div>
 
-    <div class="row">
-      <form action="" method="post">{% csrf_token %}
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="{{ stage_field }}" value="1" />
-        <button type="submit" class="button radius expand">Preview your post</button>
-      </form>
+    <div class="panel">
+      <div class="row">
+        <form action="" method="post">{% csrf_token %}
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="hidden" name="{{ stage_field }}" value="1" />
+          <button type="submit" class="button radius expand">Preview your post</button>
+        </form>
+      </div>
     </div>
 
   </div>
