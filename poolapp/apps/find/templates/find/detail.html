@@ -29,31 +29,90 @@
       <!-- Tournament Info -->
       <div class="large-12 medium-12 columns">
 
-        <div class="section-title row">
+        <div class="title-block-section">
           <div class="large-12 medium-12 columns">
-            <!-- |title filter converts text field into 'title case' -->
-            <!-- cap first word of every line -->
-            <p>{{ tourney.title|title }}</p>
+
+            <div class="section-title row">
+              <p>{{ tourney.title|title }}</p>
+            </div>
+
+            <div class="section-subtitle row">
+              <p>{{ tourney.city }}, {{ tourney.state }}</p>
+            </div>
+
           </div>
         </div>
 
         <div class="row">
           <div class="large-12 medium-12 columns">
 
-            {{ tourney.pool_hall }} will be hosting a {{ tourney.get_game_display }}
-            tournament on {{ tourney.start_date|date:"l, F d, Y" }}.
-            <br />
-            <!-- Must load humanize to use intcomma -->
-            Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}<br />
-            Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} (based on a full field)<br />
-            Format: {{ tourney.get_tourney_format_display }}<br />
-            Start Time: {{ tourney.start_time }}<br />
-            Contact: {{ tourney.contact_name|title }} at {{ tourney.formatted_contact_phone }} or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a></h5>.
-            <br /><br />
+            <!-- Lead line -->
+            <p>
+            {{ tourney.pool_hall|title }} will be hosting a 
 
-            {% if tourney.adtnl_info %}
-                <tr><td>Additional Notes: {{ tourney.adtnl_info }}</td></tr>
+            {% if tourney.game_other %}
+              {{ tourney.game_other }}
+            {% else %}
+              {{ tourney.get_game_display }}
             {% endif %}
+
+            tournament on {{ tourney.start_date|date:"l, F d, Y" }}.
+            </p>
+
+            <p>
+            <!-- Must load humanize to use intcomma -->
+            Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}
+            {% if tourney.green_fees_included %}
+              (green fees included)
+            {% elif tourney.green_fees|floatformat:"0"|intcomma %}
+              (plus ${{ tourney.green_fees }} for green fees)
+            {% else %}
+              (not including green fees)
+            {% endif %}
+            <br />
+
+            Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} 
+            {% if tourney.added_money_based_on_full_field %}
+              (based on a full field)
+            {% endif %}
+            <br />
+            Format: 
+            {% if tourney.tourney_format_other %}
+              {{ tourney.tourney_format_other }}
+            {% else %}
+              {{ tourney.get_tourney_format_display }}
+            {% endif %}
+            <br />
+
+            {% if tourney.race_to_single %}
+              Race to: {{ tourney.race_to_single }}
+            {% elif tourney.race_to_a and tourney.race_to_b %}
+              Race to: {{ tourney.race_to_a }} on the A-side, and 
+              Race to: {{ tourney.race_to_b }} on the B-side.
+            {% endif %}
+            <br />
+
+            Start Date: {{ tourney.start_date }}<br />
+            {% if tourney.end_date %}
+              End Date: {{ tourney.end_date }}<br />
+            {% endif %}
+            Start Time: {{ tourney.start_time }}<br />
+            {% if tourney.has_calcutta %}
+              This tournament will have a calcutta.
+            {% endif %}
+            </p>
+
+            <p>
+            For more info, contact: {{ tourney.contact_name|title }} 
+            at {{ tourney.formatted_contact_phone }} 
+            or <a href="mailto:{{ tourney.contact_email }}?Subject={{ tourney.title|title }}%20Tournament" target="_top">{{ tourney.contact_email }}</a>.
+          </p>
+
+          <p>
+          {% if tourney.adtnl_info %}
+          <tr><td>Additional Notes: {{ tourney.adtnl_info|capfirst }}</td></tr>
+          {% endif %}
+          </p>
 
           </div>
         </div>

@@ -269,3 +269,23 @@ p, span, li, label {
     color: red;
     font-weight: 500;
 }
+
+/* Subtitle section for the tournament details page */
+/* .title-block-section { */
+/*     font-family: ff-clan-web-pro-wide,sans-serif; */
+/* } */
+/* .title-block-section .section-subtitle p { */
+.title-block-section {
+    margin-bottom: 80px;
+}
+.title-block-section .section-subtitle p {
+    color: #666666;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.title-block-section .section-title p, 
+.title-block-section .section-subtitle p {
+    margin: 0;
+    padding: 0;
+}
