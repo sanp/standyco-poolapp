@@ -59,19 +59,31 @@ class TourneyForm(ModelForm):
               }),
             'fee': forms.TextInput(attrs={'placeholder':'$20'}),
             'added_money': forms.TextInput(attrs={'placeholder':'$2,000'}),
+
             'start_date': forms.TextInput(attrs={
-                'class':'datepicker',
-                'placeholder': 'mm/dd/yyyy'
+                'class':'start_fdatepicker',
+                'placeholder': 'mm/dd/yyyy',
+                'autocomplete':'off',
+                 'data-date-format':'mm/dd/yy'
               }),
             'end_date': forms.TextInput(attrs={
-                'class':'datepicker',
-                'placeholder': 'mm/dd/yyyy'
+                'class':'end_fdatepicker',
+                'placeholder': 'mm/dd/yyyy',
+                'autocomplete':'off',
+                 'data-date-format':'mm/dd/yy'
               }),
+
             'start_time': forms.TextInput(attrs={
-                'class':'timepicker', 
                 'autocomplete':'off',
                 'placeholder': 'hh:mm'
               }),
+
+#             'start_time': forms.TextInput(attrs={
+#                 'class':'timepicker', 
+#                 'autocomplete':'off',
+#                 'placeholder': 'hh:mm'
+#               }),
+
             'contact_phone': forms.TextInput(attrs={
                 'class':'phone',
                 'placeholder': '(201) 555-5555'

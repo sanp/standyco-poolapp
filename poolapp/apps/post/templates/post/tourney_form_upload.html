@@ -410,67 +410,144 @@ Post a tournament
   </div>
 </div>
 
-
-<!-- <div class="row"> -->
-<!--       -->
-<!--   <div class="large-9 medium-10 columns"> -->
-<!--   -->
-<!--     <h1>Post a Tournament</h1> -->
-<!--     <hr /> -->
-<!--      -->
-<!--     {% if form.errors %} -->
-<!--       <h3>Please correct the following errors</h3> -->
-<!--     {% else %} -->
-<!--       <h3>Enter in tournament details</h3> -->
-<!--     {% endif %} -->
-<!--      -->
-<!--     <form action="" method="post"> -->
-<!--       {% csrf_token %} -->
-<!--       {{ form }} -->
-<!--       <input type="hidden" name="{{ stage_field }}" value="1" /> -->
-<!--       <button type="submit" class="radius button">Preview your post</button> -->
-<!--     </form> -->
-<!--      -->
-<!--   </div> -->
-<!-- </div> -->
-
 {% endblock content-body %}
 
 {% block bottomjs %}
+
+<!-- Foundation Datepicker (based on Bootstrap datepicker) begin -->
+<!-- See: http://foundation-datepicker.peterbeno.com/example.html -->
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/foundation-datepicker/foundation-datepicker.css' %}"/ >
+<script src="{% static 'poolapp/js/foundation-datepicker/foundation-datepicker.js' %}"></script>
+
+<!-- Time and date picker js -->
+<script type='text/javascript'>
+    jQuery(function(){
+
+      function renderDates(endDateSelected) {
+
+        if (endDateSelected) {
+          // implementation of disabled form fields
+          var nowTemp = new Date();
+          var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+          var start_date = $('.start_fdatepicker').fdatepicker({
+            onRender: function (date) {
+              return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+          }).on('changeDate', function (ev) {
+            if (ev.date.valueOf() > end_date.date.valueOf()) {
+              var newDate = new Date(ev.date)
+              newDate.setDate(newDate.getDate() + 1);
+              end_date.update(newDate);
+            }
+            start_date.hide();
+            $('.end_fdatepicker')[0].focus();
+          }).data('datepicker');
+          var end_date = $('.end_fdatepicker').fdatepicker({
+            onRender: function (date) {
+              return date.valueOf() <= start_date.date.valueOf() ? 'disabled' : '';
+            }
+          }).on('changeDate', function (ev) {
+            end_date.hide();
+          }).data('datepicker');
+        } else {
+          var nowTemp = new Date();
+          var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+          var start_date = $('.start_fdatepicker').fdatepicker({
+            onRender: function (date) {
+              return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+          });
+        }
+
+      }
+
+      function resetForm(element) {
+        $(element).val(function() {
+          return this.defaultValue;
+        });
+      }
+
+      function setInitialEndDate() {
+        var currentStartDateString = $('.start_fdatepicker').val();
+        if (currentStartDateString) {
+          var initEndDate = new Date(currentStartDateString);
+          initEndDate.setDate(initEndDate.getDate() + 1);
+          var day = initEndDate.getDate() + '';
+          var month = initEndDate.getMonth() + 1; // months are 0-based
+          var year = initEndDate.getFullYear();
+          //pull the last two digits of the year
+          year = year.toString().substr(2,2);
+          month = month + '';
+          // Just want the last 2 digits for the year
+          var endDateString = month + '/' + day + '/' + year;
+          $('.end_fdatepicker').val(function() {
+            return endDateString;
+          });
+        }
+      }
+
+
+      // End Date hide/show options
+      if ($("input[id=formtools_multiple_days_0]:checked").val()) {
+          $("#optional_end_date").show();
+          setInitialEndDate();
+          renderDates(endDateSelected=true);
+      } else {
+          $("#optional_end_date").hide();
+          renderDates(endDateSelected=false);
+          resetForm('.end_fdatepicker');
+      }
+      $('input[name=multiple_days]').click(function () {
+          if (this.id == "formtools_multiple_days_0") {
+              $("#optional_end_date").show();
+              setInitialEndDate();
+              renderDates(endDateSelected=true);
+          } else {
+              $("#optional_end_date").hide();
+              renderDates(endDateSelected=false);
+              resetForm('.end_fdatepicker');
+          }
+      });
+
+    });
+</script>
+<!-- Foundation Datepicker (based on Bootstrap datepicker) end -->
 
 <!-- Datepicker JQuery -->
 <!-- JQuery timepicker library -->
 <!-- cf: http://xdsoft.net/jqplugins/datetimepicker/  -->
 <!-- this should go after your </body> -->
-<link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.css' %}"/ >
-<script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js'></script>
-<!-- <script src="{% static 'poolapp/js/datetimepicker-master/jquery-1.10.2.js' %}"></script> -->
-<script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.css' %}"/ > -->
+<!-- <script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js'></script> -->
+<!-- <script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script> -->
 
 <!-- Time and date picker js -->
-<script type='text/javascript'>
-    jQuery(function(){
-    
-        jQuery('.datepicker').datetimepicker({
-          // Use this to initialize plugin only when user interacts. Maybe a
-          // good idea, but it seems to cause a split-second lag on first load,
-          // which i don't like
-          //lazyInit: true,
-          format:'m/d/Y',
-          timepicker:false,
-          minDate: '0',
-          closeOnDateSelect:true,
-        });
-    
-        jQuery('.timepicker').datetimepicker({
-          //lazyInit: true,
-          datepicker:false,
-          format:'H:i',
-          formatTime:'h:i a'
-        });
-    
-    });
-</script>
+
+<!-- <script type='text/javascript'> -->
+<!--     jQuery(function(){ -->
+<!--      -->
+<!--         jQuery('.datepicker').datetimepicker({ -->
+<!--           // Use this to initialize plugin only when user interacts. Maybe a -->
+<!--           // good idea, but it seems to cause a split-second lag on first load, -->
+<!--           // which i don't like -->
+<!--           //lazyInit: true, -->
+<!--           format:'m/d/Y', -->
+<!--           timepicker:false, -->
+<!--           minDate: '0', -->
+<!--           closeOnDateSelect:true, -->
+<!--         }); -->
+<!--      -->
+<!--         jQuery('.timepicker').datetimepicker({ -->
+<!--           //lazyInit: true, -->
+<!--           datepicker:false, -->
+<!--           format:'H:i', -->
+<!--           formatTime:'h:i a' -->
+<!--         }); -->
+<!--      -->
+<!--     }); -->
+<!-- </script> -->
 
 <!-- Logic for showing and hiding elements based on selections of other -->
 <!-- elements -->
@@ -532,20 +609,16 @@ Post a tournament
 
 
       // Green Fees hide/show options
+      if ($("input[id=formtools_green_fees_included_0]:checked").val()) {
+          $("#optional_green_fees").hide();
+      } else {
+          $("#optional_green_fees").show();
+      }
       $('input[name=green_fees_included]').click(function () {
           if (this.id == "formtools_green_fees_included_0") {
               $("#optional_green_fees").hide();
           } else {
               $("#optional_green_fees").show();
-          }
-      });
-
-      // End Date hide/show options
-      $('input[name=multiple_days]').click(function () {
-          if (this.id == "formtools_multiple_days_0") {
-              $("#optional_end_date").show();
-          } else {
-              $("#optional_end_date").hide();
           }
       });
 

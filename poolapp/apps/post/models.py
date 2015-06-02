@@ -121,6 +121,8 @@ class Tourney(models.Model):
     # Don't allow dates older than now.
     if self.start_date and self.start_date < datetime.date.today():
       raise ValidationError({'start_date': 'Start date cannot be in the past.'})
+    if self.end_date and self.start_date and self.end_date < self.start_date:
+      raise ValidationError({'end_date': 'End date must be after start date.'})
 
   def __str__(self):              # __unicode__ on Python 2
     return self.title
