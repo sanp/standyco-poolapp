@@ -1,8 +1,10 @@
+import datetime
 from django.db import models
 from django import forms
 from django.core.validators import RegexValidator
 from localflavor.us.us_states import STATE_CHOICES
 from localflavor.us.models import USStateField
+from django.core.exceptions import ValidationError, NON_FIELD_ERRORS
 
 class Tourney(models.Model):
 
@@ -113,6 +115,12 @@ class Tourney(models.Model):
   multiple_days = models.BooleanField(choices=BOOL_CHOICES, default=False)
   title = models.CharField(max_length=70)
   adtnl_info = models.CharField(max_length=1000, blank=True, null=True)
+
+  # Extend the default model validation to include a custom clean() method
+  def clean(self):
+    # Don't allow dates older than now.
+    if self.start_date and self.start_date < datetime.date.today():
+      raise ValidationError({'start_date': 'Start date cannot be in the past.'})
 
   def __str__(self):              # __unicode__ on Python 2
     return self.title

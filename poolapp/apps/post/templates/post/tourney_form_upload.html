@@ -452,11 +452,18 @@ Post a tournament
     jQuery(function(){
     
         jQuery('.datepicker').datetimepicker({
+          // Use this to initialize plugin only when user interacts. Maybe a
+          // good idea, but it seems to cause a split-second lag on first load,
+          // which i don't like
+          //lazyInit: true,
           format:'m/d/Y',
           timepicker:false,
+          minDate: '0',
+          closeOnDateSelect:true,
         });
     
         jQuery('.timepicker').datetimepicker({
+          //lazyInit: true,
           datepicker:false,
           format:'H:i',
           formatTime:'h:i a'
