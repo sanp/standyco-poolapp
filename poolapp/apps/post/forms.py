@@ -43,7 +43,7 @@ class TourneyForm(ModelForm):
             'multiple_days': forms.RadioSelect,
             'added_money_based_on_full_field': forms.RadioSelect,
             'green_fees_included': forms.RadioSelect,
-            'green_fees': forms.TextInput(attrs={'placeholder':'$20'}),
+            'green_fees': forms.TextInput(attrs={'placeholder':'20'}),
             'race_to_single': forms.TextInput(attrs={'placeholder':'5'}),
             'race_to_a': forms.TextInput(attrs={'placeholder':'5'}),
             'race_to_b': forms.TextInput(attrs={'placeholder':'3'}),
@@ -57,8 +57,8 @@ class TourneyForm(ModelForm):
             'field_size_other': forms.TextInput(attrs={
                 'placeholder':'Another field size'
               }),
-            'fee': forms.TextInput(attrs={'placeholder':'$20'}),
-            'added_money': forms.TextInput(attrs={'placeholder':'$2,000'}),
+            'fee': forms.TextInput(attrs={'placeholder':'20'}),
+            'added_money': forms.TextInput(attrs={'placeholder':'2000'}),
 
             'start_date': forms.TextInput(attrs={
                 'class':'start_fdatepicker',

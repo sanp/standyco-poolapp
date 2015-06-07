@@ -530,7 +530,107 @@ Post a tournament
           }
       });
 
+    // Logic for showing and hiding elements based on selections of other
+    // elements
+
+    // Other hide/show options
+    var elements = {
+      // key = formtools div id for dropdown element
+      // value[0] = other option number, from models.py
+      // value[1] = div id for 'other' text box element
+      // value[2] = div id for formtools 'other' text box element
+      '#formtools_game': [6, '#other_game', '#formtools_game_other'],
+      '#formtools_tourney_format': [2, '#other_tourney_format', 
+          '#formtools_tourney_format_other'],
+      '#formtools_field_size': [5, '#other_field_size',
+          '#formtools_field_size_other']
+    };
+
+    $.each(elements, function( key, value ) {
+
+      // Handle show/hide logic for when page is reloaded, not just when the
+      // menu element changes - for example, if the user hits 'preview', but
+      // there are form errors, the 'Other Game' text box should still appear
+      if($(key).val() == value[0]){
+          $(value[1]).show();
+          resetForm(value[2]);
+      }
+      else{
+          $(value[1]).hide();
+          resetForm(value[2]);
+      }
+      $(key).change(function() {
+          if($(this).val() == value[0]){
+              $(value[1]).show();
+              resetForm(value[2]);
+          }
+          else{
+              $(value[1]).hide();
+              resetForm(value[2]);
+          }
+      });
+
     });
+
+    // Race to hide/show options
+    // See models.py -- 0 is single elimination. 1 is double. 2 is other.
+    // Make sure to reset the form fields so that they aren't accidentally
+    // popualted if the user changes his/her mind when selecting other
+    // categories
+    if($('#formtools_tourney_format').val() == 1){
+        $('#race_to_double_row').show();
+        $('#race_to_row').hide();
+        resetForm('#formtools_race_to_single');
+        resetForm('#formtools_race_to_a');
+        resetForm('#formtools_race_to_b');
+    }
+    else{
+        $('#race_to_double_row').hide();
+        $('#race_to_row').show();
+        resetForm('#formtools_race_to_single');
+        resetForm('#formtools_race_to_a');
+        resetForm('#formtools_race_to_b');
+    }
+    $('#formtools_tourney_format').change(function() {
+        if($(this).val() == 1){
+            $('#race_to_double_row').show();
+            $('#race_to_row').hide();
+            resetForm('#formtools_race_to_single');
+            resetForm('#formtools_race_to_a');
+            resetForm('#formtools_race_to_b');
+        }
+        else{
+            $('#race_to_double_row').hide();
+            $('#race_to_row').show();
+            resetForm('#formtools_race_to_single');
+            resetForm('#formtools_race_to_a');
+            resetForm('#formtools_race_to_b');
+        }
+    });
+
+
+    // Green Fees hide/show options
+    // Make sure to reset the form fields so that they aren't accidentally
+    // popualted if the user changes his/her mind when selecting other
+    // categories
+    if ($("input[id=formtools_green_fees_included_0]:checked").val()) {
+        $("#optional_green_fees").hide();
+        resetForm('#formtools_green_fees');
+    } else {
+        $("#optional_green_fees").show();
+        resetForm('#formtools_green_fees');
+    }
+    $('input[name=green_fees_included]').click(function () {
+        if (this.id == "formtools_green_fees_included_0") {
+            $("#optional_green_fees").hide();
+            resetForm('#formtools_green_fees');
+        } else {
+            $("#optional_green_fees").show();
+            resetForm('#formtools_green_fees');
+        }
+    });
+
+  });
 </script>
 <!-- Foundation Datepicker (based on Bootstrap datepicker) end -->
 
@@ -568,82 +668,6 @@ Post a tournament
 <!--      -->
 <!--     }); -->
 <!-- </script> -->
-
-<!-- Logic for showing and hiding elements based on selections of other -->
-<!-- elements -->
-<script type='text/javascript'>
-  $(document).ready(function() {
-
-      // Other hide/show options
-      var elements = {
-        // key = formtools div id for dropdown element
-        // value[0] = other option number, from models.py
-        // value[1] = div id for 'other' text box element
-        '#formtools_game': [6, '#other_game'],
-        '#formtools_tourney_format': [2, '#other_tourney_format'],
-        '#formtools_field_size': [5, '#other_field_size']
-      };
-
-      $.each(elements, function( key, value ) {
-
-        // Handle show/hide logic for when page is reloaded, not just when the
-        // menu element changes - for example, if the user hits 'preview', but
-        // there are form errors, the 'Other Game' text box should still appear
-        if($(key).val() == value[0]){
-            $(value[1]).show();
-        }
-        else{
-            $(value[1]).hide();
-        }
-        $(key).change(function() {
-            if($(this).val() == value[0]){
-                $(value[1]).show();
-            }
-            else{
-                $(value[1]).hide();
-            }
-        });
-
-      });
-
-      // Race to hide/show options
-      // See models.py -- 0 is single elimination. 1 is double. 2 is other.
-      if($('#formtools_tourney_format').val() == 1){
-          $('#race_to_double_row').show();
-          $('#race_to_row').hide();
-      }
-      else{
-          $('#race_to_double_row').hide();
-          $('#race_to_row').show();
-      }
-      $('#formtools_tourney_format').change(function() {
-          if($(this).val() == 1){
-              $('#race_to_double_row').show();
-              $('#race_to_row').hide();
-          }
-          else{
-              $('#race_to_double_row').hide();
-              $('#race_to_row').show();
-          }
-      });
-
-
-      // Green Fees hide/show options
-      if ($("input[id=formtools_green_fees_included_0]:checked").val()) {
-          $("#optional_green_fees").hide();
-      } else {
-          $("#optional_green_fees").show();
-      }
-      $('input[name=green_fees_included]').click(function () {
-          if (this.id == "formtools_green_fees_included_0") {
-              $("#optional_green_fees").hide();
-          } else {
-              $("#optional_green_fees").show();
-          }
-      });
-
-  });
-</script>
 
 <!-- Phone number formatting -->
 <!-- Cf: http://digitalbush.com/projects/masked-input-plugin/ -->

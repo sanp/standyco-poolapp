@@ -17,6 +17,7 @@ Post a tournament
 
     <div class="panel">
       <div class="row">
+
         <!-- Preview tournament details - TODO: include this don't just copy -->
         <!-- code twice -->
 
@@ -36,76 +37,76 @@ Post a tournament
             </div>
           </div>
 
-          <div class="row">
+          <div class="row post_text_section">
             <div class="large-12 medium-12 columns">
 
               <!-- Lead line -->
-              <p>
-              {{ form.data.pool_hall|title }} will be hosting a 
+              <div class="text_block">
+                {{ form.data.pool_hall|title }} will be hosting a 
+                {% if form.data.game_other %}
+                  {{ form.data.game_other }}
+                {% else %}
+                  {{ form.data.get_game_display }}
+                {% endif %}
+                tournament on {{ form.data.start_date }}.
+              </div>
 
-              {% if form.data.game_other %}
-                {{ form.data.game_other }}
-              {% else %}
-                {{ form.data.get_game_display }}
-              {% endif %}
+              <div class="text_block">
+                <!-- Must load humanize to use intcomma -->
+                Entry Fee: ${{ form.data.fee|floatformat:"0"|intcomma }}
+                {% if form.data.green_fees_included %}
+                  (green fees included)
+                {% elif form.data.green_fees|floatformat:"0"|intcomma %}
+                  (plus ${{ form.data.green_fees }} for green fees)
+                {% else %}
+                  (not including green fees)
+                {% endif %}
+                <br />
 
-              tournament on {{ form.data.start_date|date:"l, F d, Y" }}.
-              </p>
+                Added Money: ${{ form.data.added_money|floatformat:"0"|intcomma }} 
+                {% if form.data.added_money_based_on_full_field %}
+                  (based on a full field)
+                {% endif %}
+                <br />
+                Format: 
+                {% if form.data.tourney_format_other %}
+                  {{ form.data.tourney_format_other }}
+                {% else %}
+                  {{ form.data.get_tourney_format_display }}
+                {% endif %}
+                <br />
 
-              <p>
-              <!-- Must load humanize to use intcomma -->
-              Entry Fee: ${{ form.data.fee|floatformat:"0"|intcomma }}
-              {% if form.data.green_fees_included %}
-                (green fees included)
-              {% elif form.data.green_fees|floatformat:"0"|intcomma %}
-                (plus ${{ form.data.green_fees }} for green fees)
-              {% else %}
-                (not including green fees)
-              {% endif %}
-              <br />
+                {% if form.data.race_to_single %}
+                  Race to: {{ form.data.race_to_single }}
+                {% elif form.data.race_to_a and form.data.race_to_b %}
+                Race to:
+                <div class="tab">{{ form.data.race_to_a }} on the A-side, and</div>
+                <div class="tab">{{ form.data.race_to_b }} on the B-side.</div>
+                {% endif %}
+              </div>
 
-              Added Money: ${{ form.data.added_money|floatformat:"0"|intcomma }} 
-              {% if form.data.added_money_based_on_full_field %}
-                (based on a full field)
-              {% endif %}
-              <br />
-              Format: 
-              {% if form.data.tourney_format_other %}
-                {{ form.data.tourney_format_other }}
-              {% else %}
-                {{ form.data.get_tourney_format_display }}
-              {% endif %}
-              <br />
+              <div class="text_block">
+                Start Date: {{ form.data.start_date }}<br />
+                {% if form.data.end_date %}
+                  End Date: {{ form.data.end_date }}<br />
+                {% endif %}
+                Start Time: {{ form.data.start_time }}<br />
+                {% if form.data.has_calcutta %}
+                  This tournament will have a calcutta.
+                {% endif %}
+              </div>
 
-              {% if form.data.race_to_single %}
-                Race to: {{ form.data.race_to_single }}
-              {% elif form.data.race_to_a and form.data.race_to_b %}
-                Race to: {{ form.data.race_to_a }} on the A-side, and 
-                Race to: {{ form.data.race_to_b }} on the B-side.
-              {% endif %}
-              <br />
-
-              Start Date: {{ form.data.start_date }}<br />
-              {% if form.data.end_date %}
-                End Date: {{ form.data.end_date }}<br />
-              {% endif %}
-              Start Time: {{ form.data.start_time }}<br />
-              {% if form.data.has_calcutta %}
-                This tournament will have a calcutta.
-              {% endif %}
-              </p>
-
-              <p>
+            <div class="text_block">
               For more info, contact: {{ form.data.contact_name|title }} 
               at {{ form.data.formatted_contact_phone }} 
               or <a href="mailto:{{ form.data.contact_email }}?Subject={{ form.data.title|title }}%20Tournament" target="_top">{{ form.data.contact_email }}</a>.
-            </p>
+            </div>
 
-            <p>
-            {% if form.data.adtnl_info %}
-            <tr><td>Additional Notes: {{ form.data.adtnl_info|capfirst }}</td></tr>
-            {% endif %}
-            </p>
+            <div class="closing_text_block">
+              {% if form.data.adtnl_info %}
+              <tr><td>Additional Notes: {{ form.data.adtnl_info|capfirst }}</td></tr>
+              {% endif %}
+            </div>
 
             </div>
           </div>

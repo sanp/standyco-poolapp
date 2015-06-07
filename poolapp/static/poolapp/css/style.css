@@ -50,6 +50,23 @@ body {
     font-family: ff-clan-web-pro-wide;
 }
 
+.post_text_section p {
+    margin: 0;
+    padding: 0;
+}
+.text_block {
+    margin: 20px 0;
+    padding: 0;
+}
+.text_block .tab {
+    margin: 0 0 0 40px;
+    padding: 0;
+}
+.closing_text_block {
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
 /* Main content of the site -- everything under the top bar */
 #content {
     margin-top: 2%;
@@ -276,7 +293,7 @@ p, span, li, label {
 /* } */
 /* .title-block-section .section-subtitle p { */
 .title-block-section {
-    margin-bottom: 80px;
+    margin-bottom: 70px;
 }
 .title-block-section .section-subtitle p {
     color: #666666;
