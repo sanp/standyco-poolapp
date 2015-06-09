@@ -46,7 +46,7 @@ Post a tournament
                 {% if form.data.game_other %}
                   {{ form.data.game_other }}
                 {% else %}
-                  {{ form.data.get_game_display }}
+                  {{ form.data.game }}
                 {% endif %}
                 tournament on {{ form.data.start_date }}.
               </div>
@@ -73,6 +73,8 @@ Post a tournament
                   {{ form.data.tourney_format_other }}
                 {% else %}
                   {{ form.data.get_tourney_format_display }}
+<!--                   {{ form.data.tourney_format }} -->
+                  {{ format }}
                 {% endif %}
                 <br />
 
