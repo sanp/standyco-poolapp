@@ -80,6 +80,10 @@ ROOT_URLCONF = 'poolapp.urls'
 
 WSGI_APPLICATION = 'poolapp.wsgi.application'
 
+# Control what formats time data can be input in, so no need to set up special
+# rules in models, forms, or javascript for converting time to appropriate
+# format
+TIME_INPUT_FORMATS = ['%H:%M', '%I:%M%p', '%I:%M %p']
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm 
 from poolapp.apps.post.models import *
 from django.contrib.admin import widgets
+from django.contrib.admin.widgets import AdminTimeWidget
 
 class TourneyForm(ModelForm):
 
@@ -73,16 +74,17 @@ class TourneyForm(ModelForm):
                  'data-date-format':'mm/dd/yy'
               }),
 
-            'start_time': forms.TextInput(attrs={
-                'autocomplete':'off',
-                'placeholder': 'hh:mm'
-              }),
-
 #             'start_time': forms.TextInput(attrs={
-#                 'class':'timepicker', 
 #                 'autocomplete':'off',
 #                 'placeholder': 'hh:mm'
 #               }),
+
+
+            'start_time': forms.TextInput(attrs={
+                'class':'timepicker', 
+                'autocomplete':'off',
+                'placeholder': 'hh:mm'
+              }),
 
             'contact_phone': forms.TextInput(attrs={
                 'class':'phone',

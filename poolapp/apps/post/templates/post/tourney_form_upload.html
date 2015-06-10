@@ -634,40 +634,24 @@ Post a tournament
 </script>
 <!-- Foundation Datepicker (based on Bootstrap datepicker) end -->
 
-<!-- Datepicker JQuery -->
+<!-- DateTimepicker JQuery Begin -->
 <!-- JQuery timepicker library -->
 <!-- cf: http://xdsoft.net/jqplugins/datetimepicker/  -->
 <!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css"
+href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.7.0/jquery.timepicker.min.css"/ ><script
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.7.0/jquery.timepicker.min.js"></script>
 
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.css' %}"/ > -->
-<!-- <script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js'></script> -->
-<!-- <script src="{% static 'poolapp/js/datetimepicker-master/jquery.datetimepicker.js' %}"></script> -->
-
-<!-- Time and date picker js -->
-
-<!-- <script type='text/javascript'> -->
-<!--     jQuery(function(){ -->
-<!--      -->
-<!--         jQuery('.datepicker').datetimepicker({ -->
-<!--           // Use this to initialize plugin only when user interacts. Maybe a -->
-<!--           // good idea, but it seems to cause a split-second lag on first load, -->
-<!--           // which i don't like -->
-<!--           //lazyInit: true, -->
-<!--           format:'m/d/Y', -->
-<!--           timepicker:false, -->
-<!--           minDate: '0', -->
-<!--           closeOnDateSelect:true, -->
-<!--         }); -->
-<!--      -->
-<!--         jQuery('.timepicker').datetimepicker({ -->
-<!--           //lazyInit: true, -->
-<!--           datepicker:false, -->
-<!--           format:'H:i', -->
-<!--           formatTime:'h:i a' -->
-<!--         }); -->
-<!--      -->
-<!--     }); -->
-<!-- </script> -->
+<script type='text/javascript'>
+    jQuery(function(){
+      $('.timepicker').timepicker({
+          'scrollDefault': 'now',
+          'closeOnWindowScroll': false
+          //'timeFormat': 'h:i a'
+      });
+    });
+</script>
+<!-- DateTimepicker JQuery End -->
 
 <!-- Phone number formatting -->
 <!-- Cf: http://digitalbush.com/projects/masked-input-plugin/ -->
