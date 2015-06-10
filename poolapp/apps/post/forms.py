@@ -74,12 +74,6 @@ class TourneyForm(ModelForm):
                  'data-date-format':'mm/dd/yy'
               }),
 
-#             'start_time': forms.TextInput(attrs={
-#                 'autocomplete':'off',
-#                 'placeholder': 'hh:mm'
-#               }),
-
-
             'start_time': forms.TextInput(attrs={
                 'class':'timepicker', 
                 'autocomplete':'off',
