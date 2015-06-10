@@ -458,7 +458,7 @@ Post a tournament
         if (endDateSelected) {
           // implementation of disabled form fields
           var nowTemp = new Date();
-          var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+          var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() - 1, 0, 0, 0, 0);
           var start_date = $('.start_fdatepicker').fdatepicker({
             onRender: function (date) {
               return date.valueOf() < now.valueOf() ? 'disabled' : '';
@@ -481,7 +481,7 @@ Post a tournament
           }).data('datepicker');
         } else {
           var nowTemp = new Date();
-          var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+          var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() - 1, 0, 0, 0, 0);
           var start_date = $('.start_fdatepicker').fdatepicker({
             onRender: function (date) {
               return date.valueOf() < now.valueOf() ? 'disabled' : '';
