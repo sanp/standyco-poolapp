@@ -80,10 +80,10 @@ class TourneyForm(ModelForm):
                 'placeholder': 'hh:mm'
               }),
 
-            'contact_phone': forms.TextInput(attrs={
-                'class':'phone',
-                'placeholder': '(201) 555-5555'
-              }),
+#             'contact_phone': forms.TextInput(attrs={
+#                 'class':'phone'
+#               }),
+
             'contact_name': forms.TextInput(attrs={'placeholder':'Jane Smith'}),
             'contact_email': forms.TextInput(attrs={'placeholder':'jane@smithco.com'}),
             'adtnl_info': forms.Textarea(attrs={

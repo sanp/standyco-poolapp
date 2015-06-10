@@ -306,3 +306,21 @@ p, span, li, label {
     margin: 0;
     padding: 0;
 }
+
+/* intl-tel-input-master settings */
+/* Style the error and validation messages that appear for phone numbers */
+.error-msg {
+  color: red;
+  font-size: 11px;
+}
+.valid-msg {
+  color: #00C900;
+  font-size: 11px;
+}
+input.error {
+  border: 1px solid #FF7C7C;
+}
+
+.hidden {
+    display: none;
+}

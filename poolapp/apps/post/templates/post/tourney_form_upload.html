@@ -363,9 +363,18 @@ Post a tournament
               </div>
     
               <div class="row">
-                <!-- Select box -->
                 <div class="required large-12 medium-12 columns">
                   <label class="required_label">Contact phone
+                    <input class="phone" type="tel">
+                    <span class="hide valid-msg">✓ Valid</span>
+                    <span class="hide error-msg">Invalid number</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row hidden">
+                <div class="large-12 medium-12 columns">
+                  <label>Contact phone output
                     {{ form.contact_phone }}
                   </label>
                 </div>
@@ -439,13 +448,13 @@ Post a tournament
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'poolapp/js/foundation_datepicker/foundation-datepicker.css' %}"/ >
 <script src="{% static 'poolapp/js/foundation_datepicker/foundation-datepicker.js' %}"></script>
-
+  
 <!-- Time and date picker js -->
 <script type='text/javascript'>
     jQuery(function(){
-
+  
       function renderDates(endDateSelected) {
-
+  
         if (endDateSelected) {
           // implementation of disabled form fields
           var nowTemp = new Date();
@@ -479,15 +488,15 @@ Post a tournament
             }
           });
         }
-
+  
       }
-
+  
       function resetForm(element) {
         $(element).val(function() {
           return this.defaultValue;
         });
       }
-
+  
       function setInitialEndDate() {
         var currentStartDateString = $('.start_fdatepicker').val();
         if (currentStartDateString) {
@@ -506,8 +515,8 @@ Post a tournament
           });
         }
       }
-
-
+  
+  
       // End Date hide/show options
       if ($("input[id=formtools_multiple_days_0]:checked").val()) {
           $("#optional_end_date").show();
@@ -529,10 +538,10 @@ Post a tournament
               resetForm('.end_fdatepicker');
           }
       });
-
+  
     // Logic for showing and hiding elements based on selections of other
     // elements
-
+  
     // Other hide/show options
     var elements = {
       // key = formtools div id for dropdown element
@@ -545,9 +554,9 @@ Post a tournament
       '#formtools_field_size': [5, '#other_field_size',
           '#formtools_field_size_other']
     };
-
+  
     $.each(elements, function( key, value ) {
-
+  
       // Handle show/hide logic for when page is reloaded, not just when the
       // menu element changes - for example, if the user hits 'preview', but
       // there are form errors, the 'Other Game' text box should still appear
@@ -569,9 +578,9 @@ Post a tournament
               resetForm(value[2]);
           }
       });
-
+  
     });
-
+  
     // Race to hide/show options
     // See models.py -- 0 is single elimination. 1 is double. 2 is other.
     // Make sure to reset the form fields so that they aren't accidentally
@@ -607,8 +616,8 @@ Post a tournament
             resetForm('#formtools_race_to_b');
         }
     });
-
-
+  
+  
     // Green Fees hide/show options
     // Make sure to reset the form fields so that they aren't accidentally
     // popualted if the user changes his/her mind when selecting other
@@ -629,17 +638,17 @@ Post a tournament
             resetForm('#formtools_green_fees');
         }
     });
-
+  
   });
 </script>
 <!-- Foundation Datepicker (based on Bootstrap datepicker) end -->
-
+  
 <!-- Timepicker Plugin for  JQuery Begin -->
 <!-- cf: https://github.com/jonthornton/jquery-timepicker#timepicker-plugin-for-jquery  -->
 <link rel="stylesheet" type="text/css"
 href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.7.0/jquery.timepicker.min.css"/ ><script
 src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.7.0/jquery.timepicker.min.js"></script>
-
+  
 <script type='text/javascript'>
     jQuery(function(){
       $('.timepicker').timepicker({
@@ -666,6 +675,70 @@ src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.7.0/jquery.timep
 <!--         jQuery_1_5_2('.phone').mask('(999) 999-9999');  -->
 <!--     }); -->
 <!-- </script> -->
+
+<link rel="stylesheet" href="{% static 'poolapp/js/intl-tel-input-master/build/css/intlTelInput.css' %}">
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<script src="{% static 'poolapp/js/intl-tel-input-master/build/js/intlTelInput.min.js' %}"></script>
+
+<script>
+      //$(".phone").intlTelInput({
+      //  //allowExtensions: true,
+      //  //autoFormat: false,
+      //  //autoHideDialCode: false,
+      //  //autoPlaceholder: false,
+      //  //defaultCountry: "auto",
+      //  //ipinfoToken: "yolo",
+      //  //nationalMode: false,
+      //  //numberType: "MOBILE",
+      //  //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      //  //preferredCountries: ['cn', 'jp'],
+      //  //autoPlaceholder: false,
+      //  utilsScript: "{% static 'poolapp/js/intl-tel-input-master/lib/libphonenumber/build/utils.js' %}"
+      //});
+
+    var telInput = $(".phone"),
+      errorMsg = $(".error-msg"),
+      validMsg = $(".valid-msg"),
+      output = $("#formtools_contact_phone");
+
+    // initialise plugin
+    telInput.intlTelInput({
+      nationalMode: true,
+      utilsScript: "{% static 'poolapp/js/intl-tel-input-master/lib/libphonenumber/build/utils.js' %}"
+    });
+
+    // on blur: validate
+    telInput.blur(function() {
+      if ($.trim(telInput.val())) {
+        if (telInput.intlTelInput("isValidNumber")) {
+          validMsg.removeClass("hide");
+        } else {
+          telInput.addClass("error");
+          errorMsg.removeClass("hide");
+          validMsg.addClass("hide");
+        }
+      }
+    });
+
+    // on keydown: reset
+    telInput.keydown(function() {
+      telInput.removeClass("error");
+      errorMsg.addClass("hide");
+      validMsg.addClass("hide");
+    });
+
+    // listen to "keyup", but also "change" to update when the user selects a country
+    telInput.on("keyup change", function() {
+      var intlNumber = telInput.intlTelInput("getNumber");
+      if (intlNumber) {
+        //output.text(intlNumber);
+        output.val(function() {
+          return intlNumber;
+        });
+      } 
+    });
+
+</script>
 
 
 {% endblock bottomjs %}
