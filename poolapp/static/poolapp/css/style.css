@@ -324,3 +324,7 @@ input.error {
 .hidden {
     display: none;
 }
+
+.full-height {
+    height: 60vh;
+}
