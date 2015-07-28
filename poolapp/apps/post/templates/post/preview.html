@@ -44,7 +44,7 @@ Post a tournament
               <div class="text_block">
                 {{ form.data.pool_hall|title }} will be hosting a 
                 {% if form.data.game_other %}
-                  {{ form.data.game_other }}
+                  <strong>{{ form.data.game_other }}</strong>
                 {% else %}
                   <strong>{{ form.instance.get_game_display }}</strong>
                 {% endif %}
@@ -86,9 +86,9 @@ Post a tournament
               </div>
 
               <div class="text_block">
-                <strong>Start Date:</strong> {{ form.cleaned_data.start_date|date:"l, F d, Y" }}<br />
+                <strong>Start Date:</strong> {{ form.cleaned_data.start_date }}<br />
                 {% if form.data.end_date %}
-                  <strong>End Date:</strong> {{ form.cleaned_data.end_date|date:"l, F d, Y" }}<br />
+                  <strong>End Date:</strong> {{ form.cleaned_data.end_date }}<br />
                 {% endif %}
                 <strong>Start Time:</strong> {{ form.data.start_time }}<br />
                 {% if form.data.has_calcutta %}

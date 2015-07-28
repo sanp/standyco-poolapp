@@ -23,16 +23,16 @@
       <div class="text_block">
         {{ tourney.pool_hall|title }} will be hosting a 
         {% if tourney.game_other %}
-          {{ tourney.game_other }}
+          <strong>{{ tourney.game_other }}</strong>
         {% else %}
-          {{ tourney.get_game_display }}
+          <strong>{{ tourney.get_game_display }}</strong>
         {% endif %}
-        tournament on {{ tourney.start_date|date:"l, F d, Y" }}.
+        tournament on <strong>{{ tourney.start_date|date:"l, F d, Y" }}</strong>.
       </div>
 
       <div class="text_block">
         <!-- Must load humanize to use intcomma -->
-        Entry Fee: ${{ tourney.fee|floatformat:"0"|intcomma }}
+        <strong>Entry Fee:</strong> ${{ tourney.fee|floatformat:"0"|intcomma }}
         {% if tourney.green_fees_included %}
           (green fees included)
         {% elif tourney.green_fees|floatformat:"0"|intcomma %}
@@ -42,12 +42,12 @@
         {% endif %}
         <br />
 
-        Added Money: ${{ tourney.added_money|floatformat:"0"|intcomma }} 
+        <strong>Added Money:</strong> ${{ tourney.added_money|floatformat:"0"|intcomma }} 
         {% if tourney.added_money_based_on_full_field %}
           (based on a full field)
         {% endif %}
         <br />
-        Format: 
+        <strong>Format:</strong> 
         {% if tourney.tourney_format_other %}
           {{ tourney.tourney_format_other }}
         {% else %}
@@ -56,20 +56,20 @@
         <br />
 
         {% if tourney.race_to_single %}
-          Race to: {{ tourney.race_to_single }}
+          <strong>Race to:</strong> {{ tourney.race_to_single }}
         {% elif tourney.race_to_a and tourney.race_to_b %}
-        Race to:
+        <strong>Race to:</strong>
         <div class="tab">{{ tourney.race_to_a }} on the A-side, and</div>
         <div class="tab">{{ tourney.race_to_b }} on the B-side.</div>
         {% endif %}
       </div>
 
       <div class="text_block">
-        Start Date: {{ tourney.start_date }}<br />
+        <strong>Start Date:</strong> {{ tourney.start_date }}<br />
         {% if tourney.end_date %}
-          End Date: {{ tourney.end_date }}<br />
+          <strong>End Date:</strong> {{ tourney.end_date }}<br />
         {% endif %}
-        Start Time: {{ tourney.start_time }}<br />
+        <strong>Start Time:</strong> {{ tourney.start_time }}<br />
         {% if tourney.has_calcutta %}
           This tournament will have a calcutta.
         {% endif %}
@@ -83,7 +83,7 @@
 
     <div class="closing_text_block">
       {% if tourney.adtnl_info %}
-      <tr><td>Additional Notes: {{ tourney.adtnl_info|capfirst }}</td></tr>
+      <strong>Additional Notes:</strong> {{ tourney.adtnl_info|capfirst }}
       {% endif %}
     </div>
 
