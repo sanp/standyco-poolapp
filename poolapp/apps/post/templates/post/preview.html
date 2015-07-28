@@ -46,14 +46,14 @@ Post a tournament
                 {% if form.data.game_other %}
                   {{ form.data.game_other }}
                 {% else %}
-                  {{ form.data.game }}
+                  <strong>{{ form.instance.get_game_display }}</strong>
                 {% endif %}
-                tournament on {{ form.data.start_date }}.
+                tournament on <strong>{{ form.cleaned_data.start_date|date:"l, F d, Y" }}</strong>.
               </div>
 
               <div class="text_block">
                 <!-- Must load humanize to use intcomma -->
-                Entry Fee: ${{ form.data.fee|floatformat:"0"|intcomma }}
+                <strong>Entry Fee:</strong> ${{ form.data.fee|floatformat:"0"|intcomma }}
                 {% if form.data.green_fees_included %}
                   (green fees included)
                 {% elif form.data.green_fees|floatformat:"0"|intcomma %}
@@ -63,36 +63,34 @@ Post a tournament
                 {% endif %}
                 <br />
 
-                Added Money: ${{ form.data.added_money|floatformat:"0"|intcomma }} 
+                <strong>Added Money:</strong> ${{ form.data.added_money|floatformat:"0"|intcomma }} 
                 {% if form.data.added_money_based_on_full_field %}
                   (based on a full field)
                 {% endif %}
                 <br />
-                Format: 
+                <strong>Format:</strong> 
                 {% if form.data.tourney_format_other %}
                   {{ form.data.tourney_format_other }}
                 {% else %}
-                  {{ form.data.get_tourney_format_display }}
-<!--                   {{ form.data.tourney_format }} -->
-                  {{ format }}
+                  {{ form.instance.get_tourney_format_display }}
                 {% endif %}
                 <br />
 
                 {% if form.data.race_to_single %}
-                  Race to: {{ form.data.race_to_single }}
+                  <strong>Race to:</strong> {{ form.data.race_to_single }}
                 {% elif form.data.race_to_a and form.data.race_to_b %}
-                Race to:
+                <strong>Race to:</strong>
                 <div class="tab">{{ form.data.race_to_a }} on the A-side, and</div>
                 <div class="tab">{{ form.data.race_to_b }} on the B-side.</div>
                 {% endif %}
               </div>
 
               <div class="text_block">
-                Start Date: {{ form.data.start_date }}<br />
+                <strong>Start Date:</strong> {{ form.cleaned_data.start_date|date:"l, F d, Y" }}<br />
                 {% if form.data.end_date %}
-                  End Date: {{ form.data.end_date }}<br />
+                  <strong>End Date:</strong> {{ form.cleaned_data.end_date|date:"l, F d, Y" }}<br />
                 {% endif %}
-                Start Time: {{ form.data.start_time }}<br />
+                <strong>Start Time:</strong> {{ form.data.start_time }}<br />
                 {% if form.data.has_calcutta %}
                   This tournament will have a calcutta.
                 {% endif %}
@@ -106,7 +104,7 @@ Post a tournament
 
             <div class="closing_text_block">
               {% if form.data.adtnl_info %}
-              <tr><td>Additional Notes: {{ form.data.adtnl_info|capfirst }}</td></tr>
+              <strong>Additional Notes:</strong> {{ form.data.adtnl_info|capfirst }}
               {% endif %}
             </div>
 
